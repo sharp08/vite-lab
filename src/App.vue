@@ -1,15 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="aabbcc" />
+  <Nav />
+  <Square />
 </template>
 
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from "./components/HelloWorld.vue";
+<script lang="ts">
+import { defineComponent } from "vue"
+import Nav from "./components/Nav"
+import Square from "./components/Square"
+
+export default defineComponent({
+  name: "App",
+  components: {
+    Nav,
+    Square,
+  },
+})
 </script>
 
-<style>
+<style lang="less">
+body {
+  margin: 0;
+  * {
+    box-sizing: border-box;
+  }
+}
 #app {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
 }
 </style>
