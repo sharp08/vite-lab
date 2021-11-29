@@ -1,13 +1,22 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import type { RouterOptions, RouteRecordRaw } from "vue-router";
+import type { RouterOptions, RouteRecordRaw, RouteMeta } from "vue-router";
 
-export const routes: Array<RouteRecordRaw> = [
+interface CustomRouteMeta extends RouteMeta {
+  title: string;
+  desc?: string;
+}
+
+type CustomRouteRecord = RouteRecordRaw & {
+  meta: CustomRouteMeta;
+};
+
+export const routes: Array<CustomRouteRecord> = [
   {
     path: "/draggable",
     name: "draggable",
     meta: {
       title: "title",
-      desc: "desc"
+      desc: "desc",
     },
     component: () => import("../components/Draggable")
   },
