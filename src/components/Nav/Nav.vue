@@ -1,28 +1,45 @@
 <template>
   <Card @click="handleClick" class="nav-container">
-    <div :class="{'current':i==current}" :data-idx="i" class="list-item" v-for="i in 10">{{i}}</div>
+    <div
+      :class="{ active: currentRoute.name === item.name }"
+      :key="item.name"
+      :data-router-name="item.name"
+      class="list-item"
+      v-for="item in routes"
+      :title="item.meta.desc"
+    >
+      {{ item.meta.title }}/{{ item.meta.desc }}
+    </div>
   </Card>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue"
+import { defineComponent } from "vue";
+import { useRouter } from "vue-router";
+
+import { useCurrentRoute } from "../../hooks/router";
+import { routes } from "../../router";
 
 export default defineComponent({
   name: "Nav",
   setup() {
-    let current = ref(null)
+    const $router = useRouter();
+
+    let currentRoute = useCurrentRoute();
 
     const handleClick = (e: PointerEvent) => {
       if (e.target instanceof HTMLElement) {
-        current.value = e.target.dataset.idx
+        const name = e.target.dataset.routerName;
+        $router.push({ name });
       }
-    }
+    };
     return {
       handleClick,
-      current,
-    }
+      routes,
+      currentRoute,
+    };
   },
-})
+});
 </script>
 
 <style lang="less" scoped>

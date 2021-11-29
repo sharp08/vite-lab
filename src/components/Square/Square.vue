@@ -1,13 +1,14 @@
 <template>
-  <Card class="square-container">Square</Card>
-  <!-- <router-view></router-view> -->
+  <Card class="square-container">
+    <router-view></router-view>
+  </Card>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
+import { defineComponent } from "vue";
 export default defineComponent({
   name: "Square",
-})
+});
 </script>
 
 <style lang="less" scoped>
