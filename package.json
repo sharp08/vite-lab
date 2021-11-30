@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@types/marked": "~4.0.1",
+    "dayjs": "^1.10.7",
     "marked": "~4.0.5",
     "vue": "~3.2.16",
     "vue-router": "~4.0.12"
