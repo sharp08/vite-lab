@@ -17,6 +17,7 @@ export default defineComponent({
     Square,
   },
   setup() {
+    // 动态设置 document.title
     let timer: number
     document.title = dayjs().format("MM-DD HH:mm:ss")
     clearInterval(timer)
