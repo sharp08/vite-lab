@@ -1,13 +1,11 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import type { RouterOptions, RouteRecordRaw, RouteMeta } from "vue-router";
 
-interface CustomRouteMeta extends RouteMeta {
-  title: string;
-  desc?: string;
-}
-
 type CustomRouteRecord = RouteRecordRaw & {
-  meta: CustomRouteMeta;
+  meta: {
+    title: string;
+    desc?: string;
+  };
 };
 
 export const routes: Array<CustomRouteRecord> = [
@@ -16,7 +14,7 @@ export const routes: Array<CustomRouteRecord> = [
     name: "draggable",
     meta: {
       title: "title",
-      desc: "desc",
+      desc: "desc"
     },
     component: () => import("../components/Draggable")
   },
@@ -28,6 +26,15 @@ export const routes: Array<CustomRouteRecord> = [
       desc: "desc2"
     },
     component: () => import("../components/Cube")
+  },
+  {
+    path: "/markdown",
+    name: "markdown",
+    meta: {
+      title: "markdown",
+      desc: "基于 marked 的 markdown 编辑器"
+    },
+    component: () => import("../components/Markdown")
   }
 ];
 

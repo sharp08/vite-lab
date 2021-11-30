@@ -7,7 +7,7 @@
       :title="item.meta.desc"
       class="list-item"
       v-for="item in routes"
-    >{{ item.meta.title }}/{{ item.meta.desc }}</div>
+    >{{ item.meta.title }}</div>
   </Card>
 </template>
 
@@ -15,7 +15,7 @@
 import { defineComponent } from "vue"
 import { useRouter } from "vue-router"
 
-import { useCurrentRoute } from "../../hooks/router"
+import { useCurrentRoute } from "../../hooks"
 import { routes } from "../../router"
 
 export default defineComponent({
