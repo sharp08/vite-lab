@@ -1,29 +1,28 @@
 <template>
   <div>Draggable</div>
-  <div>{{ val }}</div>
+  <div>{{ age }}</div>
+  <div>{{ double }}</div>
+  <input type="text" v-model="name" />
+  <button @click="addAge">重置</button>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { defineComponent } from "vue"
+import { storeToRefs } from "pinia"
 
-import { useStore } from "@/store";
+import { useRootStore } from "@/store/root"
 
 export default defineComponent({
   name: "Draggable",
   setup() {
-    const store = useStore();
-    console.log(store.state.subModuleStore.count);
-    let timer;
-    clearInterval(timer);
-    timer = setInterval(() => {
-      store.commit("increment");
-    }, 1000);
+    const store = useRootStore()
+
     return {
-      // val: store.state.count,
-      val: computed(() => store.state.count),
-    };
+      ...storeToRefs(store),
+      addAge: store.addAge,
+    }
   },
-});
+})
 </script>
 
 <style lang="less" scoped>

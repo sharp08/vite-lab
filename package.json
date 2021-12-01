@@ -11,9 +11,9 @@
     "@types/node": "~16.11.11",
     "dayjs": "~1.10.7",
     "marked": "~4.0.5",
+    "pinia": "~2.0.0-rc.10",
     "vue": "~3.2.16",
-    "vue-router": "~4.0.12",
-    "vuex": "~4.0.2"
+    "vue-router": "~4.0.12"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "~1.9.3",

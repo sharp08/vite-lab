@@ -4,11 +4,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeUnmount } from "vue";
-import dayjs from "dayjs";
+import { defineComponent, onBeforeUnmount } from "vue"
+import dayjs from "dayjs"
 
-import Nav from "@/components/Nav";
-import Square from "@/components/Square";
+import Nav from "@/components/Nav"
+import Square from "@/components/Square"
 
 export default defineComponent({
   name: "App",
@@ -18,18 +18,18 @@ export default defineComponent({
   },
   setup() {
     // 动态设置 document.title
-    let timer;
-    document.title = dayjs().format("MM-DD HH:mm:ss");
-    clearInterval(timer);
+    let timer
+    document.title = dayjs().format("MM-DD HH:mm:ss")
+    clearInterval(timer)
     timer = setInterval(() => {
-      document.title = dayjs().format("MM-DD HH:mm:ss");
-    }, 1000);
+      document.title = dayjs().format("MM-DD HH:mm:ss")
+    }, 1000)
 
     onBeforeUnmount(() => {
-      clearInterval(timer);
-    });
+      clearInterval(timer)
+    })
   },
-});
+})
 </script>
 
 <style lang="less">
