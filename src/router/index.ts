@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import type { RouterOptions, RouteRecordRaw, RouteMeta } from "vue-router";
+import type { RouterOptions, RouteRecordRaw } from "vue-router";
 
 type CustomRouteRecord = RouteRecordRaw & {
   meta: {
