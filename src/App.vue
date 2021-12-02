@@ -1,14 +1,16 @@
 <template>
   <Nav />
   <Square />
+  <button @click="test">safawefawefawf</button>
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeUnmount } from "vue"
-import dayjs from "dayjs"
+import { defineComponent, onBeforeUnmount, onMounted } from "vue";
+import dayjs from "dayjs";
 
-import Nav from "@/components/Nav"
-import Square from "@/components/Square"
+import Nav from "@/components/Nav";
+import Square from "@/components/Square";
+import { Api } from "@/components/Notice";
 
 export default defineComponent({
   name: "App",
@@ -17,19 +19,25 @@ export default defineComponent({
     Square,
   },
   setup() {
+    // onMounted(() => {
+    //   Api.info();
+    // });
     // 动态设置 document.title
-    let timer
-    document.title = dayjs().format("MM-DD HH:mm:ss")
-    clearInterval(timer)
+    let timer;
+    document.title = dayjs().format("MM-DD HH:mm:ss");
+    clearInterval(timer);
     timer = setInterval(() => {
-      document.title = dayjs().format("MM-DD HH:mm:ss")
-    }, 1000)
+      document.title = dayjs().format("MM-DD HH:mm:ss");
+    }, 1000);
 
     onBeforeUnmount(() => {
-      clearInterval(timer)
-    })
+      clearInterval(timer);
+    });
+    return {
+      test: () => Api.info(),
+    };
   },
-})
+});
 </script>
 
 <style lang="less">
