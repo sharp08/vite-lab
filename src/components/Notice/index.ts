@@ -1,4 +1,5 @@
-import { onMounted, h, render, defineComponent } from "vue";
+import { onMounted, h, render, defineComponent, ref } from "vue";
+
 import Notice from "./Notice.vue";
 
 Notice._newInstance = cb => {
@@ -6,20 +7,29 @@ Notice._newInstance = cb => {
   document.body.append(div);
   const Wrapper = defineComponent({
     setup() {
+      const noticeRef = ref(); //  拿到组件的 ref
+
       onMounted(() => {
         console.log(Notice);
+        console.log(noticeRef);
+
         cb({
-          add: Notice.methods.add
+          add: noticeRef.value.add
         });
       });
-      return () => h(Notice);
+      return () =>
+        h(Notice, {
+          abc: "123123",
+          ref: noticeRef
+        });
     }
   });
   const vNode = h(Wrapper);
   render(vNode, div);
 };
 
-let instance;
+let instance; //  保持全局唯一
+
 let Api = {
   info: () => {
     if (instance) {
@@ -37,7 +47,7 @@ let Api = {
 export { Api };
 
 // **************************************************************************************
-// 以下为 antdv 的实现过程
+// 以下为 antdv 中的实现过程简化
 // import { onMounted, h, render, defineComponent } from "vue";
 // import Notice from "./Notice.vue";
 

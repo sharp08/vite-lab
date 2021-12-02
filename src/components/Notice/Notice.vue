@@ -1,5 +1,6 @@
 <template>
   <div class="notice">
+    <div>{{ abc }}</div>
     <div v-for="(str, idx) in arr" :key="idx">{{ str }}</div>
   </div>
 </template>
@@ -9,10 +10,14 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "Notice",
+  props: ["abc"],
   data() {
     return {
       arr: [],
     };
+  },
+  mounted(){
+    console.log(this)
   },
   methods: {
     add() {
