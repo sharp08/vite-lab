@@ -1,30 +1,27 @@
 <template>
   <div class="notice">
     <div>{{ abc }}</div>
-    <div v-for="(str, idx) in arr" :key="idx">{{ str }}</div>
+    <div :key="idx" v-for="(str, idx) in arr">{{ str }}</div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue"
 
 export default defineComponent({
   name: "Notice",
   props: ["abc"],
-  data() {
+  setup() {
+    let arr = reactive<(number | string)[]>([])
+    const add = () => {
+      arr.push(+new Date() + "")
+    }
     return {
-      arr: [],
-    };
+      arr,
+      add,
+    }
   },
-  mounted(){
-    console.log(this)
-  },
-  methods: {
-    add() {
-      this.arr.push(+new Date() + "");
-    },
-  },
-});
+})
 </script>
 
 <style lang="less" scoped>

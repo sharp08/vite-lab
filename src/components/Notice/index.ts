@@ -1,4 +1,4 @@
-import { onMounted, h, render, defineComponent, ref } from "vue";
+import { onMounted, h, render, defineComponent, ref, createApp } from "vue";
 
 import Notice from "./Notice.vue";
 
@@ -10,8 +10,8 @@ Notice._newInstance = cb => {
       const noticeRef = ref(); //  拿到组件的 ref
 
       onMounted(() => {
-        console.log(Notice);
-        console.log(noticeRef);
+        // console.log(Notice);
+        console.log(noticeRef.value.add);
 
         cb({
           add: noticeRef.value.add
@@ -24,8 +24,11 @@ Notice._newInstance = cb => {
         });
     }
   });
+  // 方式一
   const vNode = h(Wrapper);
-  render(vNode, div);
+  render(vNode, div); //  render 这个方法是在 andv 的源码里看到的
+  // 方式二
+  // createApp(Wrapper).mount(div);
 };
 
 let instance; //  保持全局唯一
