@@ -18,12 +18,14 @@ import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 
 import { useCurrentRoute } from "@/hooks";
-import { routes } from "@/router";
 
 export default defineComponent({
   name: "Nav",
   setup() {
     const $router = useRouter();
+    const demoRoutes = $router
+      .getRoutes()
+      .find((item) => item.name === "square").children;
     let currentRoute = useCurrentRoute();
 
     const handleClick = (e: PointerEvent) => {
@@ -34,7 +36,7 @@ export default defineComponent({
     };
     return {
       handleClick,
-      routes,
+      routes: demoRoutes,
       currentRoute,
     };
   },

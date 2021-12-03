@@ -1,6 +1,6 @@
 /**
  * 快捷创建组件目录
- * 
+ *
  * 使用：
  *      npm run create  创建名字为 default 的组件目录
  *      npm run create -- --name=xxx 创建名字为 xxx 的组件目录
@@ -21,22 +21,18 @@ const files = [
     content: `
 <template></template>
 
-<script>
-export default {
-  props: {},
-  data() {
+<script lang="ts">
+import { defineComponent } from "vue";
+    
+export default defineComponent({
+  name: "${DIRNAME}",
+  setup() {
     return {};
   },
-  computed: {},
-  created() {},
-  mounted() {},
-  watch: {},
-  methods: {},
-  components: {},
-};
+});
 </script>
     
-<style scoped lang="less">
+<style lang="less" scoped>
 @import url(./${DIRNAME}.less);
 </style>
 `
@@ -47,7 +43,7 @@ export default {
   },
   {
     name: `${DIRNAME}.less`,
-    content: "less"
+    content: ""
   }
 ];
 

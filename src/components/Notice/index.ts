@@ -1,61 +1,65 @@
-import { onMounted, h, render, defineComponent, ref, createApp } from "vue";
+import { onMounted, h, render, defineComponent, ref } from "vue";
 
-import Notice from "./Notice.vue";
+import NoticeCore from "./Notice.vue";
 
-Notice._newInstance = cb => {
+NoticeCore._newInstance = cb => {
   const div = document.createElement("div");
   document.body.append(div);
   const Wrapper = defineComponent({
     setup() {
       const noticeRef = ref(); //  拿到组件的 ref
-
       onMounted(() => {
-        // console.log(Notice);
-        console.log(noticeRef.value.add);
-
         cb({
-          add: noticeRef.value.add
+          add: noticeRef.value.add,
+          distroy() {
+            render(null, div);
+            if (div.parentNode) {
+              div.parentNode.removeChild(div);
+            }
+          }
         });
       });
       return () =>
-        h(Notice, {
+        h(NoticeCore, {
           abc: "123123",
           ref: noticeRef
         });
     }
   });
-  // 方式一
+
   const vNode = h(Wrapper);
   render(vNode, div); //  render 这个方法是在 andv 的源码里看到的
-  // 方式二
-  // createApp(Wrapper).mount(div);
 };
 
 let instance; //  保持全局唯一
 
-let Api = {
-  info: () => {
+interface NoticeType {
+  info: (str: string) => void;
+}
+
+let Notice: NoticeType = {
+  info: str => {
     if (instance) {
       console.log("有实例");
-      instance.add();
+      instance.add(str);
     } else {
       console.log("没有实例，创建实例");
-      Notice._newInstance(inst => {
+      NoticeCore._newInstance(inst => {
         instance = inst;
       });
     }
   }
 };
 
-export { Api };
+export { Notice };
 
 // **************************************************************************************
 // 以下为 antdv 中的实现过程简化
 // import { onMounted, h, render, defineComponent } from "vue";
-// import Notice from "./Notice.vue";
+// import NoticeCore from "./NoticeCore.vue";
 
 // const Notification = defineComponent({
-//   render: () => h(Notice)
+//   render: () => h(NoticeCore)
 // });
 
 // Notification.newInstance = cb => {

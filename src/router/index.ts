@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import type { RouterOptions, RouteRecordRaw } from "vue-router";
+import { demoRoutes } from "./demoRoutes";
 
 type CustomRouteRecord = RouteRecordRaw & {
   meta: {
@@ -10,31 +11,32 @@ type CustomRouteRecord = RouteRecordRaw & {
 
 export const routes: Array<CustomRouteRecord> = [
   {
-    path: "/draggable",
-    name: "draggable",
+    path: "/login",
+    name: "login",
     meta: {
-      title: "title",
-      desc: "desc"
+      title: "login"
     },
-    component: () => import("../components/Draggable")
+    component: () => import("../views/Login")
   },
   {
-    path: "/cube",
-    name: "cube",
+    path: "/",
+    name: "main",
+    redirect: "markdown",
     meta: {
-      title: "title2",
-      desc: "desc2"
+      title: "main"
     },
-    component: () => import("../components/Cube")
-  },
-  {
-    path: "/markdown",
-    name: "markdown",
-    meta: {
-      title: "markdown",
-      desc: "基于 marked 的 markdown 编辑器"
-    },
-    component: () => import("../components/Markdown")
+    component: () => import("../views/Main"),
+    children: [
+      {
+        path: "",
+        name: "square",
+        meta: {
+          title: "square"
+        },
+        component: () => import("../components/Square"),
+        children: demoRoutes
+      }
+    ]
   }
 ];
 

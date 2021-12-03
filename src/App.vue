@@ -1,27 +1,14 @@
 <template>
-  <Nav />
-  <Square />
-  <button @click="test">safawefawefawf</button>
+  <router-view></router-view>
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeUnmount, onMounted } from "vue";
+import { defineComponent, onBeforeUnmount } from "vue";
 import dayjs from "dayjs";
-
-import Nav from "@/components/Nav";
-import Square from "@/components/Square";
-import { Api } from "@/components/Notice";
 
 export default defineComponent({
   name: "App",
-  components: {
-    Nav,
-    Square,
-  },
   setup() {
-    // onMounted(() => {
-    //   Api.info();
-    // });
     // 动态设置 document.title
     let timer;
     document.title = dayjs().format("MM-DD HH:mm:ss");
@@ -33,9 +20,7 @@ export default defineComponent({
     onBeforeUnmount(() => {
       clearInterval(timer);
     });
-    return {
-      test: () => Api.info(),
-    };
+    return {};
   },
 });
 </script>
@@ -46,10 +31,5 @@ body {
   * {
     box-sizing: border-box;
   }
-}
-#app {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
 }
 </style>
