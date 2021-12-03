@@ -10,7 +10,7 @@
 import { defineComponent } from "vue"
 import { storeToRefs } from "pinia"
 
-import { useRootStore } from "@/store/root"
+import { useRootStore } from "@/store/root.store"
 
 export default defineComponent({
   name: "Draggable",
