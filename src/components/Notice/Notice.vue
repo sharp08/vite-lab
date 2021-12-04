@@ -26,5 +26,5 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@import url(./notice.less);
+@import url(./Notice.less);
 </style>
