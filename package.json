@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "dev:tsc": "vue-tsc --noEmit && vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
     "create": "node ./scripts/createComponent"

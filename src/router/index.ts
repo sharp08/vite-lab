@@ -1,15 +1,23 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import type { RouterOptions, RouteRecordRaw } from "vue-router";
-import { demoRoutes } from "./demoRoutes";
+import type { RouterOptions, RouteRecordRaw, RouteMeta } from "vue-router";
 
-type CustomRouteRecord = RouteRecordRaw & {
-  meta: {
-    title: string;
-    desc?: string;
-  };
-};
+export interface ICustomRouteMeta extends RouteMeta {
+  title: string;
+  desc?: string;
+  type?: string;
+}
 
-export const routes: Array<CustomRouteRecord> = [
+// @ts-ignore
+export interface ICustomRouteRecord extends Omit<RouteRecordRaw, "meta"> {
+  meta: ICustomRouteMeta;
+  // component?: Component | string;
+  // components?: Component;
+  children?: ICustomRouteRecord[];
+  // props?: Recordable;
+  // fullPath?: string;
+}
+
+export const routes: Array<ICustomRouteRecord> = [
   {
     path: "/login",
     name: "login",
@@ -34,7 +42,39 @@ export const routes: Array<CustomRouteRecord> = [
           title: "square"
         },
         component: () => import("../components/Square"),
-        children: demoRoutes
+        children: [
+          {
+            path: "/markdown",
+            alias: "",
+            name: "markdown",
+            meta: {
+              title: "markdown",
+              desc: "基于 marked 的 markdown 编辑器",
+              type: "demo"
+            },
+            component: () => import("../components/Markdown")
+          },
+          {
+            path: "/notice",
+            name: "notice",
+            meta: {
+              title: "notice",
+              desc: "全局 notice 测试基地",
+              type: "demo"
+            },
+            component: () => import("../components/NoticeDemo")
+          },
+          {
+            path: "/cube",
+            name: "cube",
+            meta: {
+              title: "title2",
+              desc: "desc2",
+              type: "demo"
+            },
+            component: () => import("../components/Cube")
+          }
+        ]
       }
     ]
   }
@@ -42,7 +82,7 @@ export const routes: Array<CustomRouteRecord> = [
 
 const options: RouterOptions = {
   history: createWebHashHistory(),
-  routes
+  routes: routes as unknown as RouteRecordRaw[]
 };
 
 export const router = createRouter(options);

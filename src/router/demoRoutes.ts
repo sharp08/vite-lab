@@ -1,12 +1,6 @@
-import type { RouteRecordRaw } from "vue-router";
+import type { ICustomRouteRecord } from "./index";
 
-type DemoRouteRecord = RouteRecordRaw & {
-  meta: {
-    type: string;
-  };
-};
-
-export const demoRoutes: DemoRouteRecord[] = [
+export const demoRoutes: ICustomRouteRecord[] = [
   {
     path: "/markdown",
     alias: "",
