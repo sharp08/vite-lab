@@ -1,3 +1,4 @@
+import type { App } from "vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 import type { RouterOptions, RouteRecordRaw, RouteMeta } from "vue-router";
 
@@ -85,4 +86,8 @@ const options: RouterOptions = {
   routes: routes as unknown as RouteRecordRaw[]
 };
 
-export const router = createRouter(options);
+const router = createRouter(options);
+
+export function setupRouter(app: App<Element>) {
+  app.use(router);
+}

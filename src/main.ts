@@ -1,16 +1,20 @@
 import { createApp } from "vue";
-import { createPinia } from 'pinia'
 
 import App from "./App.vue";
-import { router } from "./router";
-import Card from "./components/Card";
-import { withInstall } from "./utils";
+import { setupStore } from "@/store";
+import { setupRouter } from "@/router";
+import { setupGlobalComponent } from "@/components";
 
-export const app = createApp(App);
+const launchApp = () => {
+  const app = createApp(App);
 
-app
-  .use(router)
-  .use(createPinia())
-  .use(withInstall(Card));
+  setupStore(app);
 
-app.mount("#app");
+  setupRouter(app);
+
+  setupGlobalComponent(app);
+
+  app.mount("#app");
+};
+
+launchApp();
