@@ -9,4 +9,12 @@ const withInstall = <T>(component: T, alias?: string) => {
   return comp as T & Plugin;
 };
 
-export { withInstall };
+const isEmpty = (val: any): boolean => {
+  return val === null || val === undefined || val?.length === 0;
+};
+
+const setSession = (key, value) => {
+  sessionStorage.setItem(key, value);
+};
+
+export { withInstall, isEmpty };

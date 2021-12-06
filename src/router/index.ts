@@ -2,10 +2,11 @@ import type { App } from "vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 import type { RouterOptions, RouteRecordRaw, RouteMeta } from "vue-router";
 
+import { demoRoutes } from "./demoRoutes";
+
 export interface ICustomRouteMeta extends RouteMeta {
   title: string;
   desc?: string;
-  type?: string;
 }
 
 // @ts-ignore
@@ -32,7 +33,8 @@ export const routes: Array<ICustomRouteRecord> = [
     name: "main",
     redirect: "markdown",
     meta: {
-      title: "main"
+      title: "main",
+      needLogin: true
     },
     component: () => import("../views/Main"),
     children: [
@@ -40,42 +42,11 @@ export const routes: Array<ICustomRouteRecord> = [
         path: "",
         name: "square",
         meta: {
-          title: "square"
+          title: "square",
+          needLogin: true
         },
         component: () => import("../components/Square"),
-        children: [
-          {
-            path: "/markdown",
-            alias: "",
-            name: "markdown",
-            meta: {
-              title: "markdown",
-              desc: "基于 marked 的 markdown 编辑器",
-              type: "demo"
-            },
-            component: () => import("../components/Markdown")
-          },
-          {
-            path: "/notice",
-            name: "notice",
-            meta: {
-              title: "notice",
-              desc: "全局 notice 测试基地",
-              type: "demo"
-            },
-            component: () => import("../components/NoticeDemo")
-          },
-          {
-            path: "/cube",
-            name: "cube",
-            meta: {
-              title: "title2",
-              desc: "desc2",
-              type: "demo"
-            },
-            component: () => import("../components/Cube")
-          }
-        ]
+        children: demoRoutes
       }
     ]
   }
@@ -86,7 +57,7 @@ const options: RouterOptions = {
   routes: routes as unknown as RouteRecordRaw[]
 };
 
-const router = createRouter(options);
+export const router = createRouter(options);
 
 export function setupRouter(app: App<Element>) {
   app.use(router);

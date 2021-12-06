@@ -1,5 +1,5 @@
 import { watch, customRef } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import type { Ref } from "vue";
 import type { RouteLocationNormalized } from "vue-router";
 

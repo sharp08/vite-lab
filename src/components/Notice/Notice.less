@@ -1,23 +1,47 @@
+@keyframes trans {
+    0% {
+        transform: translateY(-50px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
 .notice {
-    background: red;
-    width: 300px;
     height: 0;
     color: #fff;
     position: fixed;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    padding-top: 50px;
 
     .notice-item {
+        border-radius: 2px;
+        min-width: 200px;
+        padding: 0 40px;
         height: 50px;
-        background: orange;
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-bottom: 10px;
+        animation: trans 0.2s ease;
 
-        &:nth-child(2n) {
-            background: lightgreen;
+        &:first-child {
+            margin-top: 50px;
         }
+
+        &.info {
+            background: #008cee;
+        }
+
+        &.success {
+            background: #19be6b;
+        }
+
+        &.error {
+            background: #ed4014;
+        }
+
     }
 }

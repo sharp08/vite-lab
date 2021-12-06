@@ -2,7 +2,8 @@ import { createApp } from "vue";
 
 import App from "./App.vue";
 import { setupStore } from "@/store";
-import { setupRouter } from "@/router";
+import { router, setupRouter } from "@/router";
+import { setupRouterGuard } from "@/router/guard";
 import { setupGlobalComponent } from "@/components";
 
 const launchApp = () => {
@@ -11,6 +12,7 @@ const launchApp = () => {
   setupStore(app);
 
   setupRouter(app);
+  setupRouterGuard(router);
 
   setupGlobalComponent(app);
 

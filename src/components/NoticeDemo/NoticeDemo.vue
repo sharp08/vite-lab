@@ -1,7 +1,9 @@
 
 <template>
-  <div>
-    <button @click="showNotice('info')">info</button>
+  <div class="notice-demo-container">
+    <button class="btn info" @click="showNotice('info')">info</button>
+    <button class="btn success" @click="showNotice('success')">success</button>
+    <button class="btn error" @click="showNotice('error')">error</button>
   </div>
 </template>
 
@@ -13,8 +15,10 @@ import { Notice } from "@/components/Notice";
 export default defineComponent({
   name: "NoticeDemo",
   setup() {
-    const showNotice = (str) => {
-      Notice[str](+new Date() + "");
+    const showNotice = (type: string) => {
+      Notice[type]({
+        content: `${new Date()}`,
+      });
     };
     return {
       showNotice,
