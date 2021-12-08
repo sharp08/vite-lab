@@ -1,0 +1,91 @@
+.container {
+    .globalCenter;
+    
+    height: 100%;
+    width: 100%;
+    perspective-origin: 50% 10%;
+    perspective: 500px;
+
+    @keyframes run {
+
+        0% {
+            transform: translate(-50%, -50%) rotateY(40deg);
+        }
+
+        60%,
+        100% {
+            transform: translate(-50%, -50%) rotateY(400deg);
+        }
+    }
+
+    .pyramid {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 120px;
+        height: 120px;
+        transform-style: preserve-3d;
+        transform: translate(-50%, -50%) rotateY(40deg);
+        animation: run 6s infinite;
+
+        .triangle {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            line-height: 120px;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+
+            &.front {
+                transform: translateZ(60px) rotateX(30deg);
+                transform-origin: bottom center;
+            }
+
+            &.back {
+                transform: translateZ(-60px) rotateY(-180deg) rotateX(30deg);
+                transform-origin: bottom center;
+            }
+
+            &.left {
+                transform: translateX(-60px) rotateY(-90deg) rotateX(30deg);
+                transform-origin: bottom center;
+            }
+
+            &.right {
+                transform: translateX(60px) rotateY(90deg) rotateX(30deg);
+                transform-origin: bottom center;
+            }
+
+            .unit {
+                width: 0;
+                height: 0;
+                border-top: 0px solid transparent;
+                border-right: 20px solid transparent;
+                border-left: 20px solid transparent;
+                position: absolute;
+                top: 0;
+                left: 40px;
+
+                &.t1 {
+                    border-bottom: 40px solid rgba(59, 188, 217, 0.8);
+                    z-index: 3;
+                }
+
+                &.t2 {
+                    border-bottom: 40px solid rgba(56, 139, 204, 0.8);
+                    z-index: 2;
+                    transform: scale(2);
+                    transform-origin: top center;
+                }
+
+                &.t3 {
+                    border-bottom: 40px solid rgba(52, 94, 191, 0.8);
+                    z-index: 1;
+                    transform: scale(3);
+                    transform-origin: top center;
+                }
+            }
+        }
+    }
+}

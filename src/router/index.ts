@@ -7,6 +7,7 @@ import { demoRoutes } from "./demoRoutes";
 export interface ICustomRouteMeta extends RouteMeta {
   title: string;
   desc?: string;
+  type?: "demo";
 }
 
 // @ts-ignore

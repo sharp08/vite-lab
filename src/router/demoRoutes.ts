@@ -6,7 +6,7 @@ export const demoRoutes: ICustomRouteRecord[] = [
     alias: "",
     name: "markdown",
     meta: {
-      title: "markdown",
+      title: "markdown 编辑器",
       needLogin: true,
       desc: "基于 marked 的 markdown 编辑器",
       type: "demo"
@@ -17,7 +17,7 @@ export const demoRoutes: ICustomRouteRecord[] = [
     path: "/notice",
     name: "notice",
     meta: {
-      title: "notice",
+      title: "全局提示",
       needLogin: true,
       desc: "全局 notice 测试基地",
       type: "demo"
@@ -28,11 +28,22 @@ export const demoRoutes: ICustomRouteRecord[] = [
     path: "/cube",
     name: "cube",
     meta: {
-      title: "title2",
+      title: "旋转立方体",
       needLogin: true,
-      desc: "desc2",
+      desc: "旋转立方体",
       type: "demo"
     },
     component: () => import("../components/Cube")
+  },
+  {
+    path: "/pyramid",
+    name: "pyramid",
+    meta: {
+      title: "旋转金字塔",
+      needLogin: true,
+      desc: "旋转金字塔",
+      type: "demo"
+    },
+    component: () => import("../components/Pyramid")
   }
 ];

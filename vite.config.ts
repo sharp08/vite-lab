@@ -10,5 +10,17 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src")
     },
     extensions: [".js", ".json", ".ts"]
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        modifyVars: {
+          hack: `true; @import (reference) "${path.resolve(
+            "src/style/global.less"
+          )}";`
+        },
+        javascriptEnabled: true
+      }
+    }
   }
 });

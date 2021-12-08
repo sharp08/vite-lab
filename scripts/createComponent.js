@@ -38,7 +38,7 @@ export default defineComponent({
 `
   },
   {
-    name: "index.js",
+    name: "index.ts",
     content: `export { default } from './${DIRNAME}.vue'`
   },
   {
