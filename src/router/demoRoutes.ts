@@ -45,5 +45,16 @@ export const demoRoutes: ICustomRouteRecord[] = [
       type: "demo"
     },
     component: () => import("../components/Pyramid")
+  },
+  {
+    path: "/d3/bar",
+    name: "D3-bar",
+    meta: {
+      title: "D3-柱状图",
+      needLogin: true,
+      desc: "D3",
+      type: "demo"
+    },
+    component: () => import("../components/D3/Bar")
   }
 ];
