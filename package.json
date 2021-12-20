@@ -9,6 +9,7 @@
     "create": "node ./scripts/createComponent"
   },
   "dependencies": {
+    "@types/d3": "~7.1.0",
     "@types/marked": "~4.0.1",
     "@types/node": "~16.11.11",
     "d3": "~7.2.1",
