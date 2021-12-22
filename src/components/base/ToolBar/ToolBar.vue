@@ -2,42 +2,34 @@
 <template>
   <Card class="tool-bar">
     <div class="scroll"></div>
-    <div
-      class="stable"
-      @mouseenter="handleMouseEnter"
-      @mouseleave="handleMouseLeave"
-    >
+    <div @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" class="stable">
       <div class="text">功能列表</div>
-      <Card class="menu" v-show="showMenu" @click="handleMenuItem">
+      <Card @click="handleMenuItem" class="menu" v-show="showMenu">
         <div
+          :data-name="item.name"
           :key="item.name"
           class="menu-item"
-          :data-name="item.name"
           v-for="item in menuList"
-        >
-          {{ item.name }}
-        </div>
+        >{{ item.name }}</div>
       </Card>
     </div>
   </Card>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from "vue"
 
-import { useMenu, useMenuItem } from "./hooks";
-import Card from "../Card";
+import { useMenu, useMenuItem } from "./hooks"
 
 export default defineComponent({
   name: "ToolBar",
-  components: { Card },
   setup() {
     return {
       ...useMenu(),
       ...useMenuItem(),
-    };
+    }
   },
-});
+})
 </script>
     
 <style lang="less" scoped>

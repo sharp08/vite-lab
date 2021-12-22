@@ -12,8 +12,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import Nav from "@/components/Nav";
-import ToolBar from "@/components/ToolBar";
+import Nav from "@/components/base/Nav";
+import ToolBar from "@/components/base/ToolBar";
 
 export default defineComponent({
   name: "Main",

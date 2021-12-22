@@ -46,7 +46,7 @@ export const routes: Array<ICustomRouteRecord> = [
           title: "square",
           needLogin: true
         },
-        component: () => import("../components/Square"),
+        component: () => import("../components/base/Square"),
         children: demoRoutes
       }
     ]

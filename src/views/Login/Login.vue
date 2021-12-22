@@ -22,7 +22,7 @@ import { defineComponent, reactive } from "vue";
 import { useRouter } from "vue-router";
 
 import { isEmpty } from "@/utils";
-import { Notice } from "@/components/Notice";
+import { Notice } from "@/components/global/Notice";
 
 interface IForm {
   account: string;

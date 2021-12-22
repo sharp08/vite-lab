@@ -1,6 +1,6 @@
 import type { App } from "vue";
 
-import Card from "@/components/Card";
+import Card from "@/components/global/Card";
 import { withInstall } from "@/utils";
 
 const compList = [Card];

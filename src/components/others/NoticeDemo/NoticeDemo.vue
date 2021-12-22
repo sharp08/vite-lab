@@ -10,7 +10,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import { Notice } from "@/components/Notice";
+import { Notice } from "@/components/global/Notice";
 
 export default defineComponent({
   name: "NoticeDemo",

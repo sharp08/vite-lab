@@ -11,7 +11,7 @@ export const demoRoutes: ICustomRouteRecord[] = [
       desc: "基于 marked 的 markdown 编辑器",
       type: "demo"
     },
-    component: () => import("../components/Markdown")
+    component: () => import("@/components/others/Markdown")
   },
   {
     path: "/notice",
@@ -22,7 +22,7 @@ export const demoRoutes: ICustomRouteRecord[] = [
       desc: "全局 notice 测试基地",
       type: "demo"
     },
-    component: () => import("../components/NoticeDemo")
+    component: () => import("@/components/others/NoticeDemo")
   },
   {
     path: "/cube",
@@ -33,7 +33,7 @@ export const demoRoutes: ICustomRouteRecord[] = [
       desc: "旋转立方体",
       type: "demo"
     },
-    component: () => import("../components/Cube")
+    component: () => import("@/components/others/Cube")
   },
   {
     path: "/pyramid",
@@ -44,7 +44,7 @@ export const demoRoutes: ICustomRouteRecord[] = [
       desc: "旋转金字塔",
       type: "demo"
     },
-    component: () => import("../components/Pyramid")
+    component: () => import("@/components/others/Pyramid")
   },
   {
     path: "/d3/bar",
@@ -55,6 +55,6 @@ export const demoRoutes: ICustomRouteRecord[] = [
       desc: "D3",
       type: "demo"
     },
-    component: () => import("../components/D3/Bar")
+    component: () => import("@/components/others/D3/Bar")
   }
 ];
