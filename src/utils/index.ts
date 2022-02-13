@@ -17,4 +17,22 @@ const setSession = (key, value) => {
   sessionStorage.setItem(key, value);
 };
 
-export { withInstall, isEmpty };
+/**
+ * @description: 生成区间随机数
+ * @param {Number} min  最小值（包含）
+ * @param {Number} max  最大值（包含）
+ * @param {Number} keep 保留小数位数
+ * @return: 随机数
+ */
+const RANDOM = (
+  min: number = 0,
+  max: number = 10,
+  keep: number = 0
+): number => {
+  const pow = 10 ** keep; //  ES7 代替 Math.pow() 方法，性能更好
+  const rdm = Math.random() * (max - min) + min;
+  const r = Math.round(rdm * pow) / pow;
+  return r;
+};
+
+export { withInstall, isEmpty, RANDOM };
