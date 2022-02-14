@@ -32,7 +32,7 @@ export const routes: Array<ICustomRouteRecord> = [
   {
     path: "/",
     name: "main",
-    redirect: "markdown",
+    redirect: "calculate",
     meta: {
       title: "main",
       needLogin: true
