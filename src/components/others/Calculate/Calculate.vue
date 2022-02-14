@@ -37,7 +37,7 @@ export default defineComponent({
     const showSingleAnswer = (idx: number) => (arr[idx][2] = true);
     const refresh = () => {
       arr.length = 0;
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 5; i++) {
         arr.push([genRdm(), genRdm()]);
       }
     };
