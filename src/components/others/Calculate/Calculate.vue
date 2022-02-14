@@ -32,7 +32,7 @@ export default defineComponent({
       refresh();
     });
 
-    const genRdm = () => RANDOM(0, 100000, RANDOM(0, 2));
+    const genRdm = () => RANDOM(0, 10000, RANDOM(0, 2));
     const showAnswer = () => (flag.value = true);
     const showSingleAnswer = (idx: number) => (arr[idx][2] = true);
     const refresh = () => {
