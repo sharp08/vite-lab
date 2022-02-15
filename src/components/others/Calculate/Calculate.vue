@@ -22,17 +22,20 @@
 import { defineComponent, reactive, ref, onMounted } from "vue";
 import { RANDOM } from "@/utils";
 
+type Tpl = [number, number, boolean?];
+
 export default defineComponent({
   name: "Calculate",
   setup() {
-    let arr = reactive([]);
-    let flag = ref(false);
+    let arr = reactive<Tpl[]>([]);
+
+    let flag = ref<boolean>(false);
 
     onMounted(() => {
       refresh();
     });
 
-    const genRdm = () => RANDOM(0, 10000, RANDOM(0, 2));
+    const genRdm: () => number = () => RANDOM(0, 10000, RANDOM(0, 2));
     const showAnswer = () => (flag.value = true);
     const showSingleAnswer = (idx: number) => (arr[idx][2] = true);
     const refresh = () => {
