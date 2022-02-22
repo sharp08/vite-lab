@@ -23,7 +23,6 @@ export default defineComponent({
   setup(props, context) {
     const { uid } = getCurrentInstance();
     const handleChange = (e: Event) => {
-      // context.emit("on-change", e.target.checked);
       context.emit("on-change", (e.target as HTMLInputElement).checked);
     };
     return {

@@ -6,13 +6,7 @@ export interface INode {
   children: INode[];
 }
 
-// export interface ISource {
-//   [index: number]: INode;
-// }
-
-export type ISource = INode[];
-
-export const source: ISource = [
+export const source: INode[] = [
   {
     id: "1",
     name: "1",

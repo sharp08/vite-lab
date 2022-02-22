@@ -17,6 +17,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+
 import Checkbox from "../Checkbox";
 
 export default defineComponent({
