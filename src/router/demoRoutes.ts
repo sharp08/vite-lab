@@ -13,6 +13,17 @@ export const demoRoutes: ICustomRouteRecord[] = [
     component: () => import("@/components/others/Calculate")
   },
   {
+    path: "/treecheckbox",
+    name: "TreeCheckbox",
+    meta: {
+      title: "树形多选",
+      needLogin: true,
+      desc: "树形多选",
+      type: "demo"
+    },
+    component: () => import("@/components/others/TreeCheckbox")
+  },
+  {
     path: "/markdown",
     alias: "",
     name: "markdown",
