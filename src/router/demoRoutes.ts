@@ -24,6 +24,17 @@ export const demoRoutes: ICustomRouteRecord[] = [
     component: () => import("@/components/others/TreeCheckbox")
   },
   {
+    path: "/starrySky",
+    name: "starrySky",
+    meta: {
+      title: "随机散点",
+      needLogin: true,
+      desc: "随机散点",
+      type: "demo"
+    },
+    component: () => import("@/components/others/StarrySky")
+  },
+  {
     path: "/markdown",
     alias: "",
     name: "markdown",
