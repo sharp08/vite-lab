@@ -13,7 +13,18 @@ export const demoRoutes: ICustomRouteRecord[] = [
     component: () => import("@/components/others/Calculate")
   },
   {
-    path: "/treecheckbox",
+    path: "/VirtualScroll",
+    name: "VirtualScroll",
+    meta: {
+      title: "虚拟滚动",
+      needLogin: true,
+      desc: "虚拟滚动",
+      type: "demo"
+    },
+    component: () => import("@/components/others/VirtualScroll")
+  },
+  {
+    path: "/TreeCheckbox",
     name: "TreeCheckbox",
     meta: {
       title: "树形多选",
