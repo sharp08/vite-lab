@@ -1,0 +1,33 @@
+.container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    .preview {
+        height: calc(100% - 35px);
+        margin: 5px 5px 0;
+        display: flex;
+
+        .img-container {
+            border: 4px dashed red;
+            width: calc(50% - 5px);
+
+            &:first-child {
+                margin-right: 10px
+            }
+
+            .title {
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            img {
+                object-fit: contain;
+                height: calc(100% - 30px);
+                width: 100%;
+            }
+        }
+    }
+}

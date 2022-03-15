@@ -24,6 +24,17 @@ export const demoRoutes: ICustomRouteRecord[] = [
     component: () => import("@/components/others/VirtualScroll")
   },
   {
+    path: "/ZipImg",
+    name: "ZipImg",
+    meta: {
+      title: "图片压缩",
+      needLogin: true,
+      desc: "图片压缩",
+      type: "demo"
+    },
+    component: () => import("@/components/others/ZipImg")
+  },
+  {
     path: "/TreeCheckbox",
     name: "TreeCheckbox",
     meta: {
