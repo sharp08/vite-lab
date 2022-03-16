@@ -2,15 +2,15 @@ import type { ICustomRouteRecord } from "./index";
 
 export const demoRoutes: ICustomRouteRecord[] = [
   {
-    path: "/calculate",
-    name: "calculate",
+    path: "/LazyLoadDirective",
+    name: "LazyLoadDirective",
     meta: {
-      title: "计算",
+      title: "懒加载指令",
       needLogin: true,
-      desc: "计算",
+      desc: "懒加载指令",
       type: "demo"
     },
-    component: () => import("@/components/others/Calculate")
+    component: () => import("@/components/others/LazyLoadDirective")
   },
   {
     path: "/VirtualScroll",
@@ -55,6 +55,17 @@ export const demoRoutes: ICustomRouteRecord[] = [
       type: "demo"
     },
     component: () => import("@/components/others/StarrySky")
+  },
+  {
+    path: "/calculate",
+    name: "calculate",
+    meta: {
+      title: "计算",
+      needLogin: true,
+      desc: "计算",
+      type: "demo"
+    },
+    component: () => import("@/components/others/Calculate")
   },
   {
     path: "/markdown",
