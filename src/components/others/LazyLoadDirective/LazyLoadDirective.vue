@@ -3,7 +3,7 @@
   <div>
     <button @click="handleUpdate">更新图片地址</button>
     <img src="" alt="" srcset="" v-lazy="src" />
-    <div style="background: orange; height: 1000px"></div>
+    <div style="background: orange; height: 2000px"></div>
     <img src="" alt="" srcset="" v-lazy="src" />
   </div>
 </template>
