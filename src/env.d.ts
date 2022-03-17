@@ -6,3 +6,12 @@ declare module "*.vue" {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
+
+type MyConsole = (desc: string | number, value?: unknown) => void;
+interface Console {
+  red: MyConsole;
+  orange: MyConsole;
+  dark: MyConsole;
+  green: MyConsole;
+  blue: MyConsole;
+}
