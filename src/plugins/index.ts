@@ -3,19 +3,29 @@ import { LazyLoadDirective } from "../directives/LazyLoad";
 
 // 扩展 console.log
 const extendConsole = (): void => {
-  const core = (desc: string | number, color: string, value: unknown): void => {
-    console.log(
-      `%c ${desc} `,
-      `background:${color} ; padding: 1px; border-radius: 3px;  color: #fff`,
-      value
-    );
+  const core = (color: string, ...rest: unknown[]) => {
+    const len = rest.length;
+    if (len === 1) {
+      console.log(
+        `%c ${rest[0]} `,
+        `background:${color} ; padding: 1px; border-radius: 3px;  color: #fff`
+      );
+    } else if (len === 2) {
+      console.log(
+        `%c ${rest[0]} `,
+        `background:${color} ; padding: 1px; border-radius: 3px;  color: #fff`,
+        rest[1]
+      );
+    }
   };
 
-  console.red = (desc, value) => core(desc, "#ed4014", value);
-  console.orange = (desc, value) => core(desc, "#ff9900", value);
-  console.dark = (desc, value) => core(desc, "#35495e", value);
-  console.green = (desc, value) => core(desc, "#41b883", value);
-  console.blue = (desc, value) => core(desc, "#2b85e4", value);
+  window.log = {
+    r: (...rest) => core("#ed4014", ...rest), //  red
+    o: (...rest) => core("#ff9900", ...rest), //  orange
+    d: (...rest) => core("#35495e", ...rest), //  dark
+    g: (...rest) => core("#41b883", ...rest), //  green
+    b: (...rest) => core("#2b85e4", ...rest) //  blue
+  };
 };
 
 const plugins = {
