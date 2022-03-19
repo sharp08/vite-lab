@@ -32,8 +32,8 @@ export default defineComponent({
     onBeforeUpdate(() => {
       itemRefs.length = 0
     })
-    function setRef(el: unknown): void {
-      itemRefs.push(el as HTMLElement)
+    function setRef(el: HTMLElement): void {
+      itemRefs.push(el)
     }
 
     let timer: NodeJS.Timer
