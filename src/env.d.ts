@@ -7,11 +7,14 @@ declare module "*.vue" {
   export default component;
 }
 
-type MyConsole = (desc: string | number, value?: unknown) => void;
-interface Console {
-  red: MyConsole;
-  orange: MyConsole;
-  dark: MyConsole;
-  green: MyConsole;
-  blue: MyConsole;
+type TLog = (...rest: unknown[]) => void;
+
+interface Window {
+  log: {
+    r: TLog;
+    o: TLog;
+    d: TLog;
+    g: TLog;
+    b: TLog;
+  };
 }

@@ -32,7 +32,7 @@ export const routes: Array<ICustomRouteRecord> = [
   {
     path: "/",
     name: "main",
-    redirect: "calculate",
+    redirect: demoRoutes[0].name as string,
     meta: {
       title: "main",
       needLogin: true
