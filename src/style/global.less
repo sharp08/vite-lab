@@ -1,9 +1,24 @@
-.globalCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 @red: #ed4014;
 @blue: #008cee;
 @green: #19be6b;
+
+@font-impact: impact;  //  字体
+
+.globalCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+// 动态样式，使用时 font-size: ~`vw1920(100)`
+.injectLessFn() {
+  @functions: ~`(function() {
+      this.vw1920=size=>size * 100 / 1920 + 'vw'
+      this.vh1080=size=>size * 100 / 1080 + 'vh'
+    }
+
+  )()`;
+}
+
+.injectLessFn();

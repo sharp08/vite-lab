@@ -2,6 +2,28 @@ import type { ICustomRouteRecord } from "./index";
 
 export const demoRoutes: ICustomRouteRecord[] = [
   {
+    path: "/NumberScroll",
+    name: "NumberScroll",
+    meta: {
+      title: "数字滚动",
+      needLogin: true,
+      desc: "数字滚动",
+      type: "demo"
+    },
+    component: () => import("@/components/others/NumberScroll")
+  },
+  {
+    path: "/NumberTransition",
+    name: "NumberTransition",
+    meta: {
+      title: "数字过渡",
+      needLogin: true,
+      desc: "数字过渡",
+      type: "demo"
+    },
+    component: () => import("@/components/others/NumberTransition")
+  },
+  {
     path: "/LazyLoadDirective",
     name: "LazyLoadDirective",
     meta: {
