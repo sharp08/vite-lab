@@ -1,16 +1,17 @@
-
 <template>
   <div class="notice-demo-container">
-    <button class="btn info" @click="showNotice('info')">info</button>
-    <button class="btn success" @click="showNotice('success')">success</button>
-    <button class="btn error" @click="showNotice('error')">error</button>
+    <button @click="showNotice('info')" class="btn info">info</button>
+    <button @click="showNotice('success')" class="btn success">success</button>
+    <button @click="showNotice('error')" class="btn error">error</button>
+    <button @click="test">test</button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue"
 
-import { Notice } from "@/components/global/Notice";
+import { Notice } from "@/components/global/Notice"
+import { Ws } from "@/plugins/websocket"
 
 export default defineComponent({
   name: "NoticeDemo",
@@ -18,13 +19,29 @@ export default defineComponent({
     const showNotice = (type: string) => {
       Notice[type]({
         content: `${new Date()}`,
-      });
-    };
+      })
+    }
+
+    const ws = new Ws("ws://localhost:8888")
+    ws.onOpen = function (e) {
+      console.log((e.currentTarget as WebSocket).readyState)
+    }
+    ws.onClose = function (e) {
+      console.log("onClose")
+    }
+    ws.onError = function (e) {
+      console.log("onError")
+    }
+
+    function test() {
+      ws.send(new Date().toString())
+    }
     return {
       showNotice,
-    };
+      test,
+    }
   },
-});
+})
 </script>
     
 <style lang="less" scoped>
