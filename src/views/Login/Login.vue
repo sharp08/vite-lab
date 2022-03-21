@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, onMounted, onBeforeUnmount } from "vue";
 import { useRouter } from "vue-router";
 
 import { isEmpty } from "@/utils";
@@ -38,14 +38,27 @@ export default defineComponent({
     });
     const $router = useRouter();
     const handleLogin = () => {
-      if (isEmpty(form.account) && isEmpty(form.password)) {
-        Notice.error("请输入账号密码");
+      if (!isEmpty(form.password)) {
+        Notice.error("密码错误");
         return;
       }
       sessionStorage.setItem("loginInfo", JSON.stringify(form));
       Notice.success("登录成功");
       $router.push({ name: "main" });
     };
+
+    const keyEvent = (e) => {
+      console.log(e);
+      if (e.key === "Enter") {
+        handleLogin();
+      }
+    };
+    onMounted(() => {
+      document.documentElement.addEventListener("keyup", keyEvent, false);
+    });
+    onBeforeUnmount(() => {
+      document.documentElement.removeEventListener("keyup", keyEvent);
+    });
     return {
       handleLogin,
       form,
