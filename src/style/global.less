@@ -10,8 +10,8 @@
   align-items: center;
 }
 
-
-// 动态样式，使用时 font-size: ~`vw1920(100)`
+// 动态样式，假设设计图为1920px，上面的一个元素100px
+// 则使用时 font-size: ~`vw1920(100)`
 .injectLessFn() {
   @functions: ~`(function() {
       this.vw1920=size=>size * 100 / 1920 + 'vw'
