@@ -53,6 +53,7 @@ export default defineComponent({
       const resetTop = originCount * trHeight; //  重置值
 
       function step(timestamp: number) {
+        if (!tbRef.value) return;
         const scrollTop = tbRef.value.scrollTop;
         // 达到重置值时，重置 scrollTop
         tbRef.value.scrollTop = scrollTop >= resetTop ? 0 : scrollTop + 1;

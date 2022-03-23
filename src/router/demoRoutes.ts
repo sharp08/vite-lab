@@ -2,6 +2,17 @@ import type { ICustomRouteRecord } from "./index";
 
 export const demoRoutes: ICustomRouteRecord[] = [
   {
+    path: "/DraggableDom",
+    name: "DraggableDom",
+    meta: {
+      title: "拖拽",
+      needLogin: true,
+      desc: "拖拽",
+      type: "demo"
+    },
+    component: () => import("@/components/others/DraggableDom")
+  },
+  {
     path: "/AutoScroll",
     name: "AutoScroll",
     meta: {

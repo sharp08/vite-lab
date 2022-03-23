@@ -15,8 +15,8 @@ export default defineComponent({
   name: "TextScroll",
   setup() {
     const text = ref("这里是文本这里是文本这里是文本这里是文本");
-    const textRef = ref();
-    const transformRef = ref();
+    const textRef = ref<HTMLElement>();
+    const transformRef = ref<HTMLElement>();
 
     onMounted(() => {
       startScroll();
@@ -26,6 +26,7 @@ export default defineComponent({
       const textWidth = textRef.value.clientWidth; //  拿到文本宽度
 
       function step(timestamp: number) {
+        if (!transformRef.value) return;
         try {
           const v = transformRef.value.style.transform.match(/-?\d+/g);
           let transX = Number(v[0]) - 1;
