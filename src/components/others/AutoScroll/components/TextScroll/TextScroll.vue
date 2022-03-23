@@ -3,7 +3,7 @@
   <div class="text-scroll-container">
     <div class="transform-wrap" ref="transformRef">
       <span class="text" ref="textRef">{{ text }}</span>
-      <div class="placeholder">占位区，宽度等于父容器</div>
+      <div class="placeholder" hidden>占位区，宽度等于父容器</div>
     </div>
   </div>
 </template>
