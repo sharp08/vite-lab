@@ -10,7 +10,8 @@ export const demoRoutes: ICustomRouteRecord[] = [
       desc: "拖拽缩放",
       type: "demo"
     },
-    component: () => import("@/components/others/DraggableDom")
+    // @ts-ignore
+    component: () => import("@/components/others/DraggableDom/DraggableDom.tsx")
   },
   {
     path: "/AutoScroll",

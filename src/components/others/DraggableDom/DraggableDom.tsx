@@ -1,31 +1,22 @@
-
-<template>
-  <div class="draggable-dom-container" ref="dragRef">
-    <div class="resize-handler" ref="resizeRef"></div>
-  </div>
-</template>
-
-<script lang="ts">
 import { defineComponent, ref } from "vue";
+
 import { useDrag } from "./useDrag";
 import { useResize } from "./useResize";
 
+import style from "./DraggableDom.module.less";
+
 export default defineComponent({
   name: "DraggableDom",
-  setup() {
+  setup(props, ctx) {
     const dragRef = ref<HTMLElement>();
     const resizeRef = ref<HTMLElement>();
     useDrag(dragRef);
     useResize(dragRef, resizeRef);
 
-    return {
-      dragRef,
-      resizeRef,
-    };
-  },
+    return () => (
+      <div class={style.container} ref={dragRef}>
+        <div class={style.resize_handler} ref={resizeRef}></div>
+      </div>
+    );
+  }
 });
-</script>
-    
-<style lang="less" scoped>
-@import url(./DraggableDom.less);
-</style>
