@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, onUnmounted } from "vue";
+import { defineComponent, ref } from "vue";
 import { useDrag } from "./useDrag";
 import { useResize } from "./useResize";
 
@@ -16,7 +16,7 @@ export default defineComponent({
     const dragRef = ref<HTMLElement>();
     const resizeRef = ref<HTMLElement>();
     useDrag(dragRef);
-    useResize(dragRef);
+    useResize(dragRef, resizeRef);
 
     return {
       dragRef,

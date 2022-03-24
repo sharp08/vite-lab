@@ -5,9 +5,9 @@ export const demoRoutes: ICustomRouteRecord[] = [
     path: "/DraggableDom",
     name: "DraggableDom",
     meta: {
-      title: "拖拽",
+      title: "拖拽缩放",
       needLogin: true,
-      desc: "拖拽",
+      desc: "拖拽缩放",
       type: "demo"
     },
     component: () => import("@/components/others/DraggableDom")
