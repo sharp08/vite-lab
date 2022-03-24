@@ -14,6 +14,19 @@ export const demoRoutes: ICustomRouteRecord[] = [
     component: () => import("@/components/others/DraggableDom/DraggableDom.tsx")
   },
   {
+    path: "/VirtualScroll",
+    name: "VirtualScroll",
+    meta: {
+      title: "虚拟滚动",
+      needLogin: true,
+      desc: "虚拟滚动",
+      type: "demo"
+    },
+    component: () =>
+    // @ts-ignore
+      import("@/components/others/VirtualScroll/VirtualScroll.tsx")
+  },
+  {
     path: "/AutoScroll",
     name: "AutoScroll",
     meta: {
@@ -57,17 +70,7 @@ export const demoRoutes: ICustomRouteRecord[] = [
     },
     component: () => import("@/components/others/LazyLoadDirective")
   },
-  {
-    path: "/VirtualScroll",
-    name: "VirtualScroll",
-    meta: {
-      title: "虚拟滚动",
-      needLogin: true,
-      desc: "虚拟滚动",
-      type: "demo"
-    },
-    component: () => import("@/components/others/VirtualScroll")
-  },
+
   {
     path: "/ZipImg",
     name: "ZipImg",

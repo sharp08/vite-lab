@@ -1,0 +1,27 @@
+.container {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 350px;
+    width: 300px;
+    margin: 10px auto;
+    background: @light-gray;
+
+    .full_wrap {
+        height: 800000px;
+        position: relative;
+
+        .item {
+            height: 80px;
+            line-height: 80px;
+            left: 0;
+            right: 0;
+            position: absolute;
+            width: 100%;
+
+            &:nth-child(odd) {
+                background: @blue;
+            }
+        }
+    }
+
+}
