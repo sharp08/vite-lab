@@ -1,5 +1,11 @@
 import type { ICustomRouteRecord } from "./index";
 
+// 读取模块，vite 写法
+const moduleFiles = import.meta.glob("../components/others/*/index.ts");
+for (const [path, module] of Object.entries(moduleFiles)) {
+  console.log(path.match(/(?<=others\/).+(?=\/index.ts)/g));
+}
+
 export const demoRoutes: ICustomRouteRecord[] = [
   {
     path: "/DraggableDom",
@@ -10,8 +16,7 @@ export const demoRoutes: ICustomRouteRecord[] = [
       desc: "拖拽缩放",
       type: "demo"
     },
-    // @ts-ignore
-    component: () => import("@/components/others/DraggableDom/DraggableDom.tsx")
+    component: () => import("@/components/others/DraggableDom")
   },
   {
     path: "/VirtualScroll",
@@ -22,9 +27,7 @@ export const demoRoutes: ICustomRouteRecord[] = [
       desc: "虚拟滚动",
       type: "demo"
     },
-    component: () =>
-    // @ts-ignore
-      import("@/components/others/VirtualScroll/VirtualScroll.tsx")
+    component: () => import("@/components/others/VirtualScroll/VirtualScroll")
   },
   {
     path: "/AutoScroll",
