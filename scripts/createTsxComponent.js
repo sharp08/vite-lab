@@ -6,14 +6,16 @@
  *      npm run create:tsx -- --name=xxx 创建名字为 xxx 的组件目录
  */
 
+// node v12 不支持，目前使用 v16 支持
 const PmsFs = require("fs/promises");
 const minimist = require("minimist");
 const path = require("path");
 
-const params = minimist(process.argv.slice(2));
-const DIRNAME = params.name || "default";
+const params = minimist(process.argv.slice(2))._;
 
-const PATH = path.resolve(__dirname, DIRNAME);
+const DIRNAME = params[0] || "default";
+
+const PATH = path.resolve(__dirname, `${DIRNAME}`);
 
 const files = [
   {
@@ -26,11 +28,15 @@ import ModuleStyle from "./${DIRNAME}.module.less";
 export default defineComponent({
   name: "${DIRNAME}",
   setup(props, ctx) {
-    return () => <div class={}>123</div>;
+    return () => <div>${DIRNAME}</div>;
   }
 });
 `
-  },  
+  },
+  {
+    name: "index.ts",
+    content: `export { default } from './${DIRNAME}'`
+  },
   {
     name: `${DIRNAME}.module.less`,
     content: ""
@@ -55,6 +61,7 @@ PmsFs.access(PATH)
         Promise.all(arr)
           .then(() => {
             console.log(`创建完成 ${PATH}`);
+            PmsFs.rename(PATH,path.resolve(__dirname,'../src'))
           })
           .catch(err => console.error(err));
       })

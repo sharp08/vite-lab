@@ -1,26 +1,10 @@
 import type { App } from "vue";
 import { createRouter, createWebHashHistory } from "vue-router";
-import type { RouterOptions, RouteRecordRaw, RouteMeta } from "vue-router";
+import type { RouterOptions, RouteRecordRaw } from "vue-router";
 
 import { demoRoutes } from "./demoRoutes";
 
-export interface ICustomRouteMeta extends RouteMeta {
-  title: string;
-  desc?: string;
-  type?: "demo";
-}
-
-// @ts-ignore
-export interface ICustomRouteRecord extends Omit<RouteRecordRaw, "meta"> {
-  meta: ICustomRouteMeta;
-  // component?: Component | string;
-  // components?: Component;
-  children?: ICustomRouteRecord[];
-  // props?: Recordable;
-  // fullPath?: string;
-}
-
-export const routes: Array<ICustomRouteRecord> = [
+export const routes: RouteRecordRaw[] = [
   {
     path: "/login",
     name: "login",
@@ -55,7 +39,7 @@ export const routes: Array<ICustomRouteRecord> = [
 
 const options: RouterOptions = {
   history: createWebHashHistory(),
-  routes: routes as unknown as RouteRecordRaw[]
+  routes: routes
 };
 
 export const router = createRouter(options);

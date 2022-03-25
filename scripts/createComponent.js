@@ -6,12 +6,14 @@
  *      npm run create -- --name=xxx 创建名字为 xxx 的组件目录
  */
 
+// node v12 不支持，目前使用 v16 支持
 const PmsFs = require("fs/promises");
 const minimist = require("minimist");
 const path = require("path");
 
-const params = minimist(process.argv.slice(2));
-const DIRNAME = params.name || "default";
+const params = minimist(process.argv.slice(2))._;
+
+const DIRNAME = params[0] || "default";
 
 const PATH = path.resolve(__dirname, DIRNAME);
 
@@ -19,7 +21,7 @@ const files = [
   {
     name: `${DIRNAME}.vue`,
     content: `
-<template></template>
+<template><div>${DIRNAME}</div></template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
