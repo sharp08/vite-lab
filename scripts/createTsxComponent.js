@@ -8,6 +8,7 @@
 
 // node v12 不支持，目前使用 v16 支持
 const PmsFs = require("fs/promises");
+const fs = require("fs-extra");
 const minimist = require("minimist");
 const path = require("path");
 
@@ -61,7 +62,10 @@ PmsFs.access(PATH)
         Promise.all(arr)
           .then(() => {
             console.log(`创建完成 ${PATH}`);
-            PmsFs.rename(PATH,path.resolve(__dirname,'../src'))
+            fs.move(
+              PATH,
+              path.resolve(__dirname, `../src/components/others/${DIRNAME}`)
+            );
           })
           .catch(err => console.error(err));
       })
