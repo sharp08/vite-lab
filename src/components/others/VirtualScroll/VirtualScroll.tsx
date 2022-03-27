@@ -8,32 +8,38 @@ import moduleStyle from "./VirtualScroll.module.less";
 export default defineComponent({
   name: "VirtualScroll",
   setup(props, ctx) {
-    const scrollingContainerRef = ref();
     let height = ref(350); //  容器高度
-    let total = ref(10000); //  总数据量
+    let total = ref(999); //  总数据量
     let rowHeight = ref(80); //  行高
-    let startIndex = ref(0);
-    let limit = computed<number>(() =>
+    let startIndex = ref(0); //  当前展示的第一项
+    const limit = computed<number>(() =>
       Math.ceil(height.value / rowHeight.value)
     );
 
+    // 全数据容器总高度
+    const fullHeight = computed<number>(() => total.value * rowHeight.value);
+
+    // 当前页最后一项
     let endIndex = ref<number>(
       Math.min(startIndex.value + limit.value, total.value - 1)
     );
 
+    // 滚
     function onScroll(e: Event): void {
       const { scrollTop } = e.target as HTMLElement;
-      const currIndex = Math.floor(scrollTop / rowHeight.value);
+      const curIndex = Math.floor(scrollTop / rowHeight.value); //  当前展示的第一项（包含部分展示）
 
-      if (startIndex.value !== currIndex) {
-        startIndex.value = currIndex;
-        endIndex.value = Math.min(currIndex + limit.value, total.value - 1);
-      }
+      if (startIndex.value === curIndex) return;
+
+      // 每次滚动时拿到当前应该展示的数据的索引
+      startIndex.value = curIndex;
+      endIndex.value = Math.min(curIndex + limit.value, total.value - 1);
     }
 
+    // 渲染每一项
     function renderDisplayContent(): VNode[] {
       const content: VNode[] = [];
-      for (let i = startIndex.value; i <= endIndex.value; ++i) {
+      for (let i = startIndex.value; i <= endIndex.value; i++) {
         content.push(
           <li
             key={i}
@@ -48,12 +54,13 @@ export default defineComponent({
     }
 
     return () => (
-      <div
-        ref={scrollingContainerRef}
-        class={moduleStyle.container}
-        onScroll={onScroll}
-      >
-        <div class={moduleStyle.full_wrap}>{renderDisplayContent()}</div>
+      <div class={moduleStyle.container} onScroll={onScroll}>
+        <div
+          class={moduleStyle.full_wrap}
+          style={{ height: fullHeight.value + "px" }}
+        >
+          {renderDisplayContent()}
+        </div>
       </div>
     );
   }

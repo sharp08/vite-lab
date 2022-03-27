@@ -1,27 +1,24 @@
 .container {
-    overflow-x: hidden;
-    overflow-y: auto;
-    height: 350px;
-    width: 300px;
-    margin: 10px auto;
-    background: @light-gray;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 350px;
+  width: 300px;
+  margin: 10px auto;
+  background-color: @light-gray;
 
-    .full_wrap {
-        height: 800000px;
-        position: relative;
+  .full_wrap {
+    position: relative;
 
-        .item {
-            height: 80px;
-            line-height: 80px;
-            left: 0;
-            right: 0;
-            position: absolute;
-            width: 100%;
+    .item {
+      height: 80px;
+      line-height: 80px;
+      left: 0;
+      right: 0;
+      position: absolute;
+      width: 100%;
+      border-bottom: 1px solid #fff;
 
-            &:nth-child(odd) {
-                background: @blue;
-            }
-        }
     }
+  }
 
 }
