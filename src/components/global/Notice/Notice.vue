@@ -1,13 +1,16 @@
 <template>
   <div class="notice">
-    <div
-      class="notice-item"
-      :class="item.type"
-      :key="item.createTime"
-      v-for="item in noticeList"
-    >
-      {{ item.content }}
-    </div>
+    <transition-group name="fade">
+      <div
+        class="notice-item"
+        :class="item.type"
+        :key="item.createTime"
+        :style="{ top: index * 60 + 'px' }"
+        v-for="(item, index) in noticeList"
+      >
+        {{ item.content }}
+      </div>
+    </transition-group>
   </div>
 </template>
 

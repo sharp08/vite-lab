@@ -9,27 +9,33 @@
 }
 
 .notice {
-    height: 0;
     color: #fff;
     position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 50px;
+    left: 0%;
+
+    .fade-enter-active,
+    .fade-leave-active {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    .fade-enter-from,
+    .fade-leave-to {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
 
     .notice-item {
-        border-radius: 2px;
-        min-width: 200px;
-        padding: 0 40px;
-        height: 50px;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+        position: absolute;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: 10px;
-        animation: trans 0.2s ease;
-
-        &:first-child {
-            margin-top: 50px;
-        }
+        border-radius: 2px;
+        padding: 0 40px;
+        height: 50px;
+        white-space: nowrap;
 
         &.info {
             background: @blue;
