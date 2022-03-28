@@ -3,12 +3,13 @@
     <transition-group name="fade">
       <div
         class="notice-item"
-        :class="item.type"
         :key="item.createTime"
         :style="{ top: index * 60 + 'px' }"
         v-for="(item, index) in noticeList"
       >
-        {{ item.content }}
+        <span class="text" :class="item.type">
+          {{ item.content }}
+        </span>
       </div>
     </transition-group>
   </div>

@@ -31,23 +31,32 @@
         position: absolute;
         display: flex;
         justify-content: center;
-        align-items: center;
-        border-radius: 2px;
-        padding: 0 40px;
         height: 50px;
         white-space: nowrap;
+        width: 100vw;
+        pointer-events: none; //  假设当前元素挡住了下面的按钮，通过该属性可以【穿透】该元素，点击到下面的元素
 
-        &.info {
-            background: @blue;
+        .text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 2px;
+            padding: 0 40px;
+            background-color: orange;
+
+            &.info {
+                background: @blue;
+            }
+
+            &.success {
+                background: @green;
+            }
+
+            &.error {
+                background: @red;
+            }
         }
 
-        &.success {
-            background: @green;
-        }
-
-        &.error {
-            background: @red;
-        }
 
     }
 }

@@ -3,8 +3,11 @@ import { onMounted, h, render, defineComponent, ref } from "vue";
 import NoticeCore from "./Notice.vue";
 
 NoticeCore._newInstance = cb => {
+  // 准备容器
   const div = document.createElement("div");
+  div.setAttribute("id", "notice-container");
   document.body.append(div);
+
   const Wrapper = defineComponent({
     setup() {
       const noticeRef = ref(); //  拿到组件的 ref
@@ -44,7 +47,7 @@ const open = (params: string | INotice, type: string) => {
   let standardParams: INotice = {
     content: "",
     createTime: +new Date(),
-    duration: 3000,
+    duration: 300000,
     type
   };
 
@@ -57,6 +60,7 @@ const open = (params: string | INotice, type: string) => {
     };
   }
 
+  // 第一次调用 open 时创建 instance，后续不再进入
   if (!instance) {
     NoticeCore._newInstance(inst => {
       instance = inst;
