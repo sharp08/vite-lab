@@ -1,8 +1,25 @@
 import { onMounted, h, render, defineComponent, ref } from "vue";
 
 import NoticeCore from "./Notice.vue";
+type NoticeCoreType = InstanceType<typeof NoticeCore>;
 
-NoticeCore._newInstance = cb => {
+import AA from '@/components/others/VirtualScroll'
+type AAType = InstanceType<typeof AA>;
+
+
+interface NoticeType {
+  info: (str: string | INotice) => void;
+  success: (str: string | INotice) => void;
+  error: (str: string | INotice) => void;
+}
+interface Icb {
+  add: any;
+  destroy(): void;
+}
+
+type zzz = (inst: Icb) => void;
+
+NoticeCore._newInstance = (cb: zzz) => {
   // 准备容器
   const div = document.createElement("div");
   div.setAttribute("id", "notice-container");
@@ -10,11 +27,11 @@ NoticeCore._newInstance = cb => {
 
   const Wrapper = defineComponent({
     setup() {
-      const noticeRef = ref(); //  拿到组件的 ref
+      const noticeRef = ref<NoticeCoreType>(); //  拿到组件的 ref
       onMounted(() => {
         cb({
           add: noticeRef.value.add,
-          distroy() {
+          destroy() {
             render(null, div);
             if (div.parentNode) {
               div.parentNode.removeChild(div);
@@ -36,12 +53,6 @@ NoticeCore._newInstance = cb => {
 
 let instance; //  保持全局唯一
 
-interface NoticeType {
-  info: (str: string | INotice) => void;
-  success: (str: string | INotice) => void;
-  error: (str: string | INotice) => void;
-}
-
 // 弹窗核心
 const open = (params: string | INotice, type: string) => {
   let standardParams: INotice = {
@@ -62,7 +73,7 @@ const open = (params: string | INotice, type: string) => {
 
   // 第一次调用 open 时创建 instance，后续不再进入
   if (!instance) {
-    NoticeCore._newInstance(inst => {
+    NoticeCore._newInstance((inst: Icb) => {
       instance = inst;
     });
   }
