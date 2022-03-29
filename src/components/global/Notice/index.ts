@@ -1,7 +1,11 @@
 import { onMounted, h, render, defineComponent, ref } from "vue";
 
 import NoticeCore from "./Notice";
-type NoticeCoreType = InstanceType<typeof NoticeCore>;
+import { AddType } from "./Notice";
+
+type NoticeCoreType = InstanceType<typeof NoticeCore> & {
+  add: AddType;
+};
 
 interface NoticeType {
   info: (str: string | INotice) => void;
@@ -9,13 +13,13 @@ interface NoticeType {
   error: (str: string | INotice) => void;
 }
 interface Icb {
-  add: any;
+  add: AddType;
   destroy(): void;
 }
 
-type zzz = (inst: Icb) => void;
+type CbType = (inst: Icb) => void;
 
-NoticeCore._newInstance = (cb: zzz) => {
+NoticeCore._newInstance = (cb: CbType) => {
   // 准备容器
   const div = document.createElement("div");
   div.setAttribute("id", "notice-container");
@@ -55,7 +59,7 @@ const open = (params: string | INotice, type: string) => {
   let standardParams: INotice = {
     content: "",
     createTime: +new Date(),
-    duration: 300000,
+    duration: 3000,
     type
   };
 
