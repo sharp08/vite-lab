@@ -1,11 +1,7 @@
 import { onMounted, h, render, defineComponent, ref } from "vue";
 
-import NoticeCore from "./Notice.vue";
+import NoticeCore from "./Notice";
 type NoticeCoreType = InstanceType<typeof NoticeCore>;
-
-import AA from '@/components/others/VirtualScroll'
-type AAType = InstanceType<typeof AA>;
-
 
 interface NoticeType {
   info: (str: string | INotice) => void;
@@ -28,6 +24,7 @@ NoticeCore._newInstance = (cb: zzz) => {
   const Wrapper = defineComponent({
     setup() {
       const noticeRef = ref<NoticeCoreType>(); //  拿到组件的 ref
+
       onMounted(() => {
         cb({
           add: noticeRef.value.add,
