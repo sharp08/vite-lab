@@ -4,7 +4,18 @@ import type { RouterOptions, RouteRecordRaw } from "vue-router";
 
 import { demoRoutes } from "./demoRoutes";
 
-export const routes: RouteRecordRaw[] = [
+export interface IMeta {
+  meta: {
+    title: string;
+    needLogin?: boolean;
+    desc?: string;
+    type?: "demo";
+  };
+}
+
+export type IRouteRecordRaw = RouteRecordRaw & IMeta;
+
+export const routes: IRouteRecordRaw[] = [
   {
     path: "/login",
     name: "login",
@@ -39,7 +50,7 @@ export const routes: RouteRecordRaw[] = [
 
 const options: RouterOptions = {
   history: createWebHashHistory(),
-  routes: routes
+  routes
 };
 
 export const router = createRouter(options);
