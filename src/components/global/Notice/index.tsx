@@ -40,16 +40,12 @@ NoticeCore._newInstance = (cb: CbType) => {
           }
         });
       });
-      return () =>
-        h(NoticeCore, {
-          abc: "123123",
-          ref: noticeRef
-        });
+      return () => <NoticeCore abc="123" ref={noticeRef} />;
     }
   });
 
-  const vNode = h(Wrapper);
-  render(vNode, div); //  render 这个方法是在 andv 的源码里看到的
+  const vNode = h(Wrapper); //  转换成虚拟 dom 
+  render(vNode, div); //  渲染到 div 上 render 这个方法是在 andv 的源码里看到的
 };
 
 let instance; //  保持全局唯一
