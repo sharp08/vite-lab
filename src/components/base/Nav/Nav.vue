@@ -8,9 +8,7 @@
         :title="item.meta.desc"
         class="list-item"
         v-for="item in routes"
-      >
-        {{ item.meta.title }}
-      </div>
+      >{{ item.meta.title }}</div>
     </Card>
   </div>
 </template>
@@ -37,7 +35,7 @@ export default defineComponent({
     };
     return {
       handleClick,
-      routes: demoRoutes as IRouteRecordRaw[],
+      routes: demoRoutes as unknown as IRouteRecordRaw[],
       currentRoute,
     };
   },

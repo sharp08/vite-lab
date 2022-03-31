@@ -1,19 +1,22 @@
 import type { App } from "vue";
 import { createRouter, createWebHashHistory } from "vue-router";
-import type { RouterOptions, RouteRecordRaw } from "vue-router";
+import type { RouterOptions, RouteRecordRaw, RouteMeta } from "vue-router";
 
 import { demoRoutes } from "./demoRoutes";
 
 export interface IMeta {
-  meta: {
-    title: string;
-    needLogin?: boolean;
-    desc?: string;
-    type?: "demo";
-  };
+  title: string;
+  needLogin?: boolean;
+  desc?: string;
+  type?: "demo";
+  [propName: keyof RouteMeta]: string | boolean | "demo";
 }
 
-export type IRouteRecordRaw = RouteRecordRaw & IMeta;
+type OmitSome = Omit<RouteRecordRaw, "meta" | "children">;
+export interface IRouteRecordRaw extends OmitSome {
+  meta: IMeta;
+  children?: IRouteRecordRaw[];
+}
 
 export const routes: IRouteRecordRaw[] = [
   {
@@ -50,7 +53,7 @@ export const routes: IRouteRecordRaw[] = [
 
 const options: RouterOptions = {
   history: createWebHashHistory(),
-  routes
+  routes: routes as unknown as RouteRecordRaw[]
 };
 
 export const router = createRouter(options);
