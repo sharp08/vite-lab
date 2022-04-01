@@ -2,17 +2,16 @@
 export const extendConsole = (): void => {
   const core = (color: string, ...rest: unknown[]) => {
     const len = rest.length;
-    if (len === 1) {
-      console.log(
-        `%c ${rest[0]} `,
-        `background:${color} ; padding: 1px; border-radius: 3px;  color: #fff`
-      );
-    } else if (len === 2) {
-      console.log(
-        `%c ${rest[0]} `,
-        `background:${color} ; padding: 1px; border-radius: 3px;  color: #fff`,
-        rest[1]
-      );
+    const style = (color: string) =>
+      `background:${color} ; padding: 1px; border-radius: 3px;  color: #fff`;
+
+    switch (len) {
+      case 1:
+        console.log(`%c ${rest[0]} `, style(color));
+        break;
+      default:
+        console.log(`%c ${rest[0]} `, style(color), ...rest.slice(1));
+        break;
     }
   };
 

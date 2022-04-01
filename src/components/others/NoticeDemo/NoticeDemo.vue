@@ -7,18 +7,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, getCurrentInstance, onMounted } from "vue";
 
 import { Notice } from "@/components/global/Notice";
 
 export default defineComponent({
   name: "NoticeDemo",
   setup() {
+    const app = getCurrentInstance()
     const showNotice = (type: string) => {
+      // 全局提示
+      // const { appContext: { config: { globalProperties: { $notice } } } } = app
+      // $notice[type](`${new Date()}`)
+
       Notice[type]({
         content: `${new Date()}`,
       });
     };
+    onMounted(() => {
+    })
 
     return {
       showNotice,
