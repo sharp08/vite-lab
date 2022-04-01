@@ -8,12 +8,14 @@ import { setupGlobalComponent } from "@/components";
 
 import App from "./App.vue";
 
+import "animate.css";
+
 const launchApp = () => {
   const app = createApp(App);
 
   setupStore(app);
   setupRouter(app);
-  setupRouterGuard(router);  
+  setupRouterGuard(router);
   setupPlugins(app);
   setupGlobalComponent(app);
 

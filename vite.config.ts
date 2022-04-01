@@ -26,5 +26,8 @@ export default defineConfig({
         javascriptEnabled: true
       }
     }
+  },
+  build: {
+    cssCodeSplit: false // 禁用 css 拆分
   }
 });

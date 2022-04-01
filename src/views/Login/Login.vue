@@ -1,54 +1,43 @@
 
 <template>
-  <Card class="login-form-container">
-    <input
-      class="ipt form-item"
-      v-model="form.account"
-      type="text"
-      placeholder="账号"
-    />
-    <input
-      class="ipt form-item"
-      type="placeholder"
-      v-model="form.password"
-      placeholder="密码"
-    />
-    <button class="btn form-item" @click="handleLogin">登录</button>
-  </Card>
+  <div class="login-bg">
+    <Card class="login-form-container">
+      <input class="ipt form-item" type="placeholder" v-model="form.password" autofocus />
+    </Card>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive, onMounted, onBeforeUnmount } from "vue";
 import { useRouter } from "vue-router";
+import dayjs from "dayjs";
 
-import { isEmpty } from "@/utils";
 import { Notice } from "@/components/global/Notice";
-
-interface IForm {
-  account: string;
-  password: string;
-}
 
 export default defineComponent({
   name: "Login",
   setup() {
-    let form = reactive<IForm>({
-      account: "",
+    let form = reactive({
       password: "",
     });
     const $router = useRouter();
+
+    // 登录
     const handleLogin = () => {
-      if (!isEmpty(form.password)) {
+      const pwd = dayjs().format("HHmm")
+      console.log(form.password)
+      if (form.password !== pwd) {
         Notice.error("密码错误");
+        form.password = ""
         return;
       }
+
       sessionStorage.setItem("loginInfo", JSON.stringify(form));
       Notice.success("登录成功");
       $router.push({ name: "main" });
     };
 
-    const keyEvent = (e) => {
-      console.log(e);
+    const keyEvent = (e: KeyboardEvent) => {
       if (e.key === "Enter") {
         handleLogin();
       }
