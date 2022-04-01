@@ -43,7 +43,7 @@ export default defineComponent({
         content.push(
           <li
             key={i}
-            class={moduleStyle.item}
+            class={moduleStyle["full-wrap__item"]}
             style={{ top: i * rowHeight.value + "px" }}
           >
             item-{i}
@@ -56,7 +56,7 @@ export default defineComponent({
     return () => (
       <div class={moduleStyle.container} onScroll={onScroll}>
         <div
-          class={moduleStyle.full_wrap}
+          class={moduleStyle["full-wrap"]}
           style={{ height: fullHeight.value + "px" }}
         >
           {renderDisplayContent()}
