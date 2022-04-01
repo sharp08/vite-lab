@@ -10,10 +10,10 @@ export default defineComponent({
   name: "App",
   setup() {
     // 动态设置 document.title
-    let timer;
+    let timer: number;
     document.title = dayjs().format("MM-DD HH:mm:ss");
     clearInterval(timer);
-    timer = setInterval(() => {
+    timer = window.setInterval(() => {
       document.title = dayjs().format("MM-DD HH:mm:ss");
     }, 1000);
 
@@ -30,6 +30,7 @@ body {
   margin: 0;
   * {
     box-sizing: border-box;
+    .scrollBar;
   }
 }
 </style>
