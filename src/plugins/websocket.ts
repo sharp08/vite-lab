@@ -1,6 +1,10 @@
 type WebSocketSendType = WebSocket["send"]; // 拿到 WebSocket 中 send 成员的类型
+// 拿到函数参数类型
+// 方式1：
 type GetSendArgType<T> = T extends (arg: infer P) => void ? P : never; //  获取函数的第一个参数类型
-type SendArgType = GetSendArgType<WebSocketSendType>; //  拿到参数类型
+type SendArgType = GetSendArgType<WebSocketSendType>;
+// 方式2
+// type SendArgType = Parameters<WebSocketSendType>[0];
 
 interface IOptions {
   url: string;
