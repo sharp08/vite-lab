@@ -1,3 +1,5 @@
+import { defineAsyncComponent } from "vue";
+
 import type { IRouteRecordRaw } from "./";
 
 // 读取模块，vite 写法
@@ -18,7 +20,9 @@ export const demoRoutes: IRouteRecordRaw[] = Object.entries(moduleFiles).map(
         desc: compName,
         type: "demo"
       },
-      component
+      component: defineAsyncComponent({
+        loader: component,
+      })
     };
   }
 );

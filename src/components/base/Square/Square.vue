@@ -1,6 +1,6 @@
 <template>
   <Card class="square-container">
-    <router-view></router-view>
+    <RouterView></RouterView>
   </Card>
 </template>
 

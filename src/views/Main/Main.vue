@@ -4,7 +4,8 @@
     <Nav></Nav>
     <div class="main-right">
       <ToolBar />
-      <router-view></router-view>
+      <!-- <RouterView></RouterView> -->
+      <RouterView></RouterView>
     </div>
   </div>
 </template>
