@@ -2,11 +2,9 @@
 declare module "vue" {
   export interface GlobalComponents {    
     Card: typeof import("@/components/global/Card")["default"];
-    RouterView: typeof import("vue-router")["RouterView"];
+    // 不使用 jsx 时需要如下开启确保 template 不报错
+    // RouterView: typeof import("vue-router")["RouterView"];
   }
 }
-
-// 全局组件在 .tsx 文件下会报错，暂时用 @ts-ignore 压制
-// declare let Card: any;
 
 export {};

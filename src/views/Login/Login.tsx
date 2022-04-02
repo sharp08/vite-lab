@@ -1,33 +1,25 @@
-
-<template>
-  <div class="login-bg">
-    <Card class="login-form-container">
-      <input class="ipt form-item" type="placeholder" v-model="form.password" autofocus />
-    </Card>
-  </div>
-</template>
-
-<script lang="ts">
 import { defineComponent, reactive, onMounted, onBeforeUnmount } from "vue";
 import { useRouter } from "vue-router";
 import dayjs from "dayjs";
 
 import { Notice } from "@/components/global/Notice";
 
+import ms from "./Login.module.less";
+
 export default defineComponent({
   name: "Login",
   setup() {
     let form = reactive({
-      password: "",
+      password: ""
     });
     const $router = useRouter();
 
     // 登录
     const handleLogin = () => {
-      const pwd = dayjs().format("HHmm")
+      const pwd = dayjs().format("HHmm");
       if (form.password !== pwd) {
         Notice.error("密码错误");
-        form.password = ""
+        form.password = "";
         return;
       }
 
@@ -47,14 +39,16 @@ export default defineComponent({
     onBeforeUnmount(() => {
       document.documentElement.removeEventListener("keyup", keyEvent);
     });
-    return {
-      handleLogin,
-      form,
-    };
-  },
+    return () => (
+      <div class={ms["login"]}>
+        <Card class={ms["form-container"]}>
+          <input
+            class={ms["form-item"]}
+            v-model={form.password}
+            autofocus
+          />
+        </Card>
+      </div>
+    );
+  }
 });
-</script>
-    
-<style lang="less" scoped>
-@import url(./Login.less);
-</style>

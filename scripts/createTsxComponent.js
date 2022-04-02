@@ -24,7 +24,7 @@ const files = [
     content: `
 import { defineComponent } from "vue";
 
-import moduleStyle from "./${DIRNAME}.module.less";
+import ms from "./${DIRNAME}.module.less";
 
 export default defineComponent({
   name: "${DIRNAME}",

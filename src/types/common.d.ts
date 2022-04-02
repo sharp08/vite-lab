@@ -10,3 +10,6 @@ interface INotice {
 
 // 声明一个全局变量 AAA，此时可以在其他文件中直接打印 AAA，要赋值必须为 string 类型的值
 declare let AAA: string;
+
+// 全局组件在 .tsx 文件下会报错，暂时用 @ts-ignore 压制
+declare let Card: any;

@@ -1,6 +1,6 @@
 import { defineComponent, ref, computed, onMounted, nextTick } from "vue";
 
-import moduleStyle from "./404.module.less";
+import ms from "./404.module.less";
 
 export default defineComponent({
   name: "404",
@@ -35,26 +35,24 @@ export default defineComponent({
     });
 
     return () => (
-      <div class={moduleStyle.container}>
+      <div class={ms.container}>
         <input
-          class={moduleStyle.input}
+          class={ms.input}
           type="text"
           value={str.value}
           onChange={inputChange}
         />
-        {/* @ts-ignore */}
-        <Card ref={limitWrapRef} class={moduleStyle["limit-wrap"]}>
-          <div ref={animationWrapRef} class={moduleStyle[toggleClass.value]}>
+        <Card ref={limitWrapRef} class={ms["limit-wrap"]}>
+          <div ref={animationWrapRef} class={ms[toggleClass.value]}>
             {splitStr.value.map((unit, index) => (
               <span
-                class={moduleStyle.item}
+                class={ms.item}
                 style={{ "animation-delay": 0.5 * index + "s" }}
               >
                 {unit}
               </span>
             ))}
           </div>
-          {/* @ts-ignore */}
         </Card>
       </div>
     );

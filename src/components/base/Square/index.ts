@@ -1,1 +1,1 @@
-export { default } from "./Square.vue";
+export { default } from "./Square";

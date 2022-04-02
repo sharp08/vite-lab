@@ -6,7 +6,7 @@ import { router, setupRouter } from "@/router";
 import { setupRouterGuard } from "@/router/guard";
 import { setupGlobalComponent } from "@/components";
 
-import App from "./App.vue";
+import App from "./App";
 
 import "animate.css";
 

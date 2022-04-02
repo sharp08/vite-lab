@@ -2,7 +2,7 @@
 import { defineComponent, ref, computed } from "vue";
 import type { VNode } from "vue";
 
-import moduleStyle from "./VirtualScroll.module.less";
+import ms from "./VirtualScroll.module.less";
 
 export default defineComponent({
   name: "VirtualScroll",
@@ -42,7 +42,7 @@ export default defineComponent({
         content.push(
           <li
             key={i}
-            class={moduleStyle["full-wrap__item"]}
+            class={ms["full-wrap__item"]}
             style={{ top: i * rowHeight.value + "px" }}
           >
             item-{i}
@@ -53,9 +53,9 @@ export default defineComponent({
     }
 
     return () => (
-      <div class={moduleStyle.container} onScroll={onScroll}>
+      <div class={ms.container} onScroll={onScroll}>
         <div
-          class={moduleStyle["full-wrap"]}
+          class={ms["full-wrap"]}
           style={{ height: fullHeight.value + "px" }}
         >
           {renderDisplayContent()}

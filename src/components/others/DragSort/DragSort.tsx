@@ -2,7 +2,7 @@
 
 import { defineComponent, reactive } from "vue";
 
-import moduleStyle from "./DragSort.module.less";
+import ms from "./DragSort.module.less";
 
 export default defineComponent({
   name: "DragSort",
@@ -28,16 +28,16 @@ export default defineComponent({
     };
 
     return () => (
-      <div class={moduleStyle.container}>
+      <div class={ms.container}>
         <div
           style={{ height: "100px", width: "100px", background: "orange" }}
           draggable
           onDragover={onDragover}
         ></div>
-        <div class={moduleStyle.dragList}>
+        <div class={ms.dragList}>
           {list.map(i => (
             <div
-              class={moduleStyle.dragList__item}
+              class={ms.dragList__item}
               draggable
               onDragstart={onDragstart}
               onDragend={onDragend}

@@ -27,6 +27,10 @@ export default defineConfig({
       }
     }
   },
+  server: {
+    host: true,
+    port: 3333
+  },
   build: {
     cssCodeSplit: false // 禁用 css 拆分
   }

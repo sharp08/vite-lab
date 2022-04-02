@@ -1,7 +1,7 @@
 
 import { defineComponent } from "vue";
 
-import moduleStyle from "./CustomElementAndShadowDom.module.less";
+import ms from "./CustomElementAndShadowDom.module.less";
 
 export default defineComponent({
   name: "CustomElementAndShadowDom",

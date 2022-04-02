@@ -1,6 +1,6 @@
 import { defineComponent, reactive, TransitionGroup } from "vue";
 
-import moduleStyle from "./Notice.module.less";
+import ms from "./Notice.module.less";
 import "./transition.less"; //  过渡样式
 
 export type AddType = (params: INotice) => void;
@@ -22,17 +22,17 @@ export default defineComponent({
     expose({ add });
 
     return () => (
-      <div class={moduleStyle.notice}>
+      <div class={ms.notice}>
         <TransitionGroup name="fade">
           {noticeList.map((item, index) => (
             <div
-              class={moduleStyle.notice__item}
+              class={ms.notice__item}
               key={item.createTime}
               style={{ top: index * 60 + "px" }}
             >
               <span
                 class={
-                  moduleStyle.text + " " + moduleStyle["text--" + item.type]
+                  ms.text + " " + ms["text--" + item.type]
                 }
               >
                 {item.content}
