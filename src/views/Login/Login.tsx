@@ -1,4 +1,4 @@
-import { defineComponent, reactive, onMounted, onBeforeUnmount } from "vue";
+import { defineComponent, reactive, onActivated, onDeactivated } from "vue";
 import { useRouter } from "vue-router";
 import dayjs from "dayjs";
 
@@ -33,20 +33,18 @@ export default defineComponent({
         handleLogin();
       }
     };
-    onMounted(() => {
+    
+    onActivated(() => {
       document.documentElement.addEventListener("keyup", keyEvent, false);
     });
-    onBeforeUnmount(() => {
+    onDeactivated(() => {
       document.documentElement.removeEventListener("keyup", keyEvent);
     });
+
     return () => (
       <div class={ms["login"]}>
         <Card class={ms["form-container"]}>
-          <input
-            class={ms["form-item"]}
-            v-model={form.password}
-            autofocus
-          />
+          <input class={ms["form-item"]} v-model={form.password} autofocus />
         </Card>
       </div>
     );

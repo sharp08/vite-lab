@@ -1,4 +1,4 @@
-const log: ClassDecorator = target => {
+const classLog: ClassDecorator = target => {
   //   console.log("log");
 };
 /**
@@ -14,16 +14,16 @@ function delayDctr(duration: number) {
   ) => {
     const method = descriptor.value;
     descriptor.value = function () {
-      window.log.b("调用延迟执行");
+      console.b("调用延迟执行");
       setTimeout(() => {
-        window.log.r("执行");
+        console.r("执行");
         method();
       }, duration);
     };
   };
 }
 
-@log
+@classLog
 class Apis {
   @delayDctr(3000)
   getName() {

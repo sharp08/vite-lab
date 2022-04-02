@@ -15,11 +15,9 @@ export const extendConsole = (): void => {
     }
   };
 
-  window.log = {
-    r: (...rest) => core("#ed4014", ...rest), //  red
-    o: (...rest) => core("#ff9900", ...rest), //  orange
-    d: (...rest) => core("#35495e", ...rest), //  dark
-    g: (...rest) => core("#41b883", ...rest), //  green
-    b: (...rest) => core("#2b85e4", ...rest) //  blue
-  };
+  console.r = (...rest) => core("#ed4014", ...rest); //  red
+  console.o = (...rest) => core("#ff9900", ...rest); //  orange
+  console.d = (...rest) => core("#35495e", ...rest); //  dark
+  console.g = (...rest) => core("#41b883", ...rest); //  green
+  console.b = (...rest) => core("#2b85e4", ...rest); //  blue
 };
