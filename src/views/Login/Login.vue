@@ -25,7 +25,6 @@ export default defineComponent({
     // 登录
     const handleLogin = () => {
       const pwd = dayjs().format("HHmm")
-      console.log(form.password)
       if (form.password !== pwd) {
         Notice.error("密码错误");
         form.password = ""

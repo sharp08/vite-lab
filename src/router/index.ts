@@ -48,6 +48,15 @@ export const routes: IRouteRecordRaw[] = [
         children: demoRoutes
       }
     ]
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "404",
+    meta: {
+      title: "404",
+      needLogin: true
+    },
+    component: () => import("../views/404")
   }
 ];
 

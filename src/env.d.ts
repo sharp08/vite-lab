@@ -6,15 +6,3 @@ declare module "*.vue" {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
-
-type TLog = (...rest: unknown[]) => void;
-
-interface Window {
-  log: {
-    r: TLog;
-    o: TLog;
-    d: TLog;
-    g: TLog;
-    b: TLog;
-  };
-}

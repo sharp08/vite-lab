@@ -1,5 +1,4 @@
 // https://codesandbox.io/s/a-naive-v-list-f0ghm?file=/src/App.js
-
 import { defineComponent, ref, computed } from "vue";
 import type { VNode } from "vue";
 

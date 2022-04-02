@@ -1,5 +1,6 @@
 <template>
   <div class="nav-container">
+
     <Card @click="handleClick" class="card">
       <div
         :class="{ active: currentRoute.name === item.name }"
