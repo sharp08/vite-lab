@@ -1,50 +1,61 @@
-import { defineComponent, reactive, onActivated, onDeactivated } from "vue";
+// 外部的
+import { defineComponent, onMounted, onBeforeUnmount, ref } from "vue";
 import { useRouter } from "vue-router";
-import dayjs from "dayjs";
 
-import { Notice } from "@/components/global/Notice";
+// 工程级的
+import { apis } from "@/utils/apis";
 
+// 组件级的
+import { useVideo } from "./hooks";
 import ms from "./Login.module.less";
 
 export default defineComponent({
   name: "Login",
   setup() {
-    let form = reactive({
-      password: ""
-    });
     const $router = useRouter();
-
-    // 登录
-    const handleLogin = () => {
-      const pwd = dayjs().format("HHmm");
-      if (form.password !== pwd) {
-        Notice.error("密码错误");
-        form.password = "";
-        return;
-      }
-
-      sessionStorage.setItem("loginInfo", JSON.stringify(form));
-      Notice.success("登录成功");
-      $router.push({ name: "main" });
-    };
+    const text = ref<string>();
 
     const keyEvent = (e: KeyboardEvent) => {
       if (e.key === "Enter") {
-        handleLogin();
+        console.log(e);
+        $router.push({ name: "main" });
       }
     };
-    
-    onActivated(() => {
+
+    // 视频宽度较大，调整一下位置
+    const videoRef = useVideo();
+
+    // 获取毒鸡汤
+    async function getSoup() {
+      const { content } = await apis.getPoisonousChickenSoup();
+      text.value = content;
+    }
+
+    onMounted(() => {
+      getSoup();
       document.documentElement.addEventListener("keyup", keyEvent, false);
     });
-    onDeactivated(() => {
+    onBeforeUnmount(() => {
       document.documentElement.removeEventListener("keyup", keyEvent);
     });
 
     return () => (
-      <div class={ms["login"]}>
-        <Card class={ms["form-container"]}>
-          <input class={ms["form-item"]} v-model={form.password} autofocus />
+      <div class={ms["login"]} onDblclick={getSoup}>
+        {/* 必须静音才能自动播放 */}
+        <video
+          ref={videoRef}
+          class={ms["bg"]}
+          src="/media/bg.mp4"
+          autoplay
+          muted
+          loop
+        ></video>
+        <Card backdrop class={ms["form-container"]}>
+          <span style="text-align:center;font-size:26px">
+            <i style="font-size:40px" class="iconfont icon-baojiaquotation2" />
+            {text.value}
+            <i style="font-size:40px" class="iconfont icon-baojiaquotation" />
+          </span>
         </Card>
       </div>
     );

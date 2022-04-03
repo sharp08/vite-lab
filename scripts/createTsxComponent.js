@@ -2,8 +2,8 @@
  * 快捷创建组件目录
  *
  * 使用：
- *      npm run create:tsx  创建名字为 default 的组件目录
- *      npm run create:tsx -- --name=xxx 创建名字为 xxx 的组件目录
+ *      npm run create:tsx xxx 在 src/components/others 目录下创建名字为 xxx 的组件目录
+ *      不写名字默认 default
  */
 
 // node v12 不支持，目前使用 v16 支持

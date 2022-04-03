@@ -1,3 +1,7 @@
+import { Notice } from "@/components/global/Notice";
+
+import http from "./http";
+
 const classLog: ClassDecorator = target => {
   //   console.log("log");
 };
@@ -23,6 +27,15 @@ function delayDctr(duration: number) {
   };
 }
 
+// 指定 alapi 返回的数据格式
+interface IAlapi {
+  "/soul": {
+    req: { format: string; token: string };
+    res: { content: string };
+  };
+}
+const alApiToken = "DBvTCreZo8Jedv3Q";
+
 @classLog
 class Apis {
   @delayDctr(3000)
@@ -31,6 +44,20 @@ class Apis {
   }
   getAge() {
     return fetch(`http://localhost:3333/get`);
+  }
+  // 心灵毒鸡汤
+  async getPoisonousChickenSoup(
+    params: IAlapi["/soul"]["req"] = {
+      format: "json",
+      token: alApiToken
+    }
+  ) {
+    const { code, data, msg } = await http.get<IAlapi["/soul"]["res"]>(
+      `https://v2.alapi.cn/api/soul`,
+      { params }
+    );
+    if (code === 200) return data;
+    else Notice.error(msg);
   }
 }
 

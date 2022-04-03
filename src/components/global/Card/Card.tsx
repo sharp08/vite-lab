@@ -4,7 +4,13 @@ import ms from "./Card.module.less";
 
 export default defineComponent({
   name: "Card",
+  props: {
+    backdrop: {
+      type: Boolean
+    }
+  },
   setup(props, { slots }) {
-    return () => <div class={ms.card}>{slots.default()}</div>;
+    const className = "card" + (props.backdrop ? "--backdrop" : "");
+    return () => <div class={ms[className]}>{slots.default()}</div>;
   }
 });

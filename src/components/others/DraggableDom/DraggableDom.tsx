@@ -1,6 +1,6 @@
 import { defineComponent, ref } from "vue";
 
-import { useDrag } from "./hooks/useDrag";
+import { useDrag } from "@/hooks";
 import { useResize } from "./hooks/useResize";
 
 import style from "./DraggableDom.module.less";

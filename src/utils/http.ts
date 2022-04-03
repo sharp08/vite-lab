@@ -5,7 +5,7 @@ const getToken = () => "123";
 
 // 创建实例
 const instance = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: "",
   timeout: 5000 // request timeout
 });
 
@@ -26,9 +26,10 @@ const errMap = {
 // 请求拦截
 instance.interceptors.request.use(
   config => {
-    let token = getToken();
-    if (!token) return config;
-    config.headers.Authorization = "Bearer " + token;
+    const token = getToken();
+    if (token) config.headers.Authorization = "Bearer " + token;
+
+    return config;
   },
   error => {
     console.error(error);
@@ -39,6 +40,7 @@ instance.interceptors.request.use(
 // 响应拦截
 instance.interceptors.response.use(
   response => {
+    console.log(response);
     const { data, status } = response;
     if (status !== 200) return Promise.reject(data);
 
