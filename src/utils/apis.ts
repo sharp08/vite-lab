@@ -34,7 +34,7 @@ interface IAlapi {
     res: { content: string };
   };
 }
-const alApiToken = "DBvTCreZo8Jedv3Q";
+const alApiToken = "HB25l3un951xX7Ud";
 
 @classLog
 class Apis {
