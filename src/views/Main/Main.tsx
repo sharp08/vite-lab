@@ -3,6 +3,7 @@ import { RouterView } from "vue-router";
 
 import Nav from "@/components/base/Nav";
 import ToolBar from "@/components/base/ToolBar";
+import Clock from "@/components/global/Clock";
 
 import ms from "./Main.module.less";
 
@@ -15,6 +16,7 @@ export default defineComponent({
 
     return () => (
       <div class={ms.main}>
+        <Clock />
         <Nav></Nav>
         <div class={ms.main__right}>
           <ToolBar />

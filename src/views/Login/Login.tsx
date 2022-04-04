@@ -23,7 +23,7 @@ export default defineComponent({
     };
 
     // 视频宽度较大，调整一下位置
-    const videoRef = useVideo();
+    // const videoRef = useVideo();
 
     // 获取毒鸡汤
     async function getSoup() {
@@ -43,9 +43,9 @@ export default defineComponent({
       <div class={ms["login"]} onDblclick={getSoup}>
         {/* 必须静音才能自动播放 */}
         <video
-          ref={videoRef}
+          // ref={videoRef}
           class={ms["bg"]}
-          src="/media/bg.mp4"
+          src="/media/bg2.mp4"
           autoplay
           muted
           loop
