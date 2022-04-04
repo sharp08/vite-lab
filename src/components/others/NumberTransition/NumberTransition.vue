@@ -1,12 +1,12 @@
 
 <template>
   <div class="container">
-    <span class="trans" title="GsapSpan">{{renderValue.val?.toFixed(2)}}</span>
+    <span class="trans" title="GsapSpan">{{ renderValue.val?.toFixed(2) }}</span>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, onMounted, onUnmounted } from "vue"
+import { defineComponent, reactive, onActivated, onDeactivated } from "vue"
 import { gsap } from "gsap"
 
 import { RANDOM } from "@/utils"
@@ -20,14 +20,14 @@ export default defineComponent({
       gsap.to(renderValue, { duration: 0.5, val: RANDOM(0, 100) })
     }
 
-    let timer: NodeJS.Timer
+    let timer: number;
 
-    onMounted(() => {
-      timer = setInterval(() => {
+    onActivated(() => {
+      timer = window.setInterval(() => {
         change()
       }, 2000)
     })
-    onUnmounted(() => {
+    onDeactivated(() => {
       clearInterval(timer)
     })
     return {

@@ -38,13 +38,10 @@ export default defineComponent({
     // 拖拽
     useDrag(clockRef);
 
-    let timer: number;
     onMounted(() => {
       window.requestAnimationFrame(run);
     });
-    onBeforeUnmount(() => {
-      clearInterval(timer);
-    });
+    onBeforeUnmount(() => {});
 
     return () => (
       <div class={ms["clock"]} ref={clockRef}>

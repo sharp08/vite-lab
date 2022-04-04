@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref, onActivated, onDeactivated } from "vue";
 
 export default defineComponent({
   name: "TextScroll",
@@ -18,8 +18,14 @@ export default defineComponent({
     const textRef = ref<HTMLElement>();
     const transformRef = ref<HTMLElement>();
 
-    onMounted(() => {
+    const stop = ref();
+    // 挂载后生成数据
+    onActivated(() => {
+      stop.value = false
       startScroll();
+    });
+    onDeactivated(() => {
+      stop.value = true
     });
 
     const startScroll = () => {
@@ -37,6 +43,7 @@ export default defineComponent({
           transformRef.value.style.transform = "translateX(0)";
         }
 
+        if (stop.value) return
         window.requestAnimationFrame(step);
       }
 

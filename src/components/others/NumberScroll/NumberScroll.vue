@@ -3,7 +3,7 @@
   <div class="container">
     <div :ref="setRef" class="count-win" v-for="num in numberList">
       <div class="count-bg">
-        <div :key="i" class="count-item" v-for="i in list">{{i}}</div>
+        <div :key="i" class="count-item" v-for="i in list">{{ i }}</div>
       </div>
     </div>
   </div>
@@ -13,10 +13,10 @@
 import {
   defineComponent,
   reactive,
-  onMounted,
+  onActivated,
   ref,
   computed,
-  onUnmounted,
+  onDeactivated,
   onBeforeUpdate,
 } from "vue"
 
@@ -36,22 +36,22 @@ export default defineComponent({
       itemRefs.push(el)
     }
 
-    let timer: NodeJS.Timer
-    onMounted(() => {
+    let timer: number
+    onActivated(() => {
       originNumber.value = RANDOM(100, 999)
-      timer = setInterval(() => {
+      timer = window.setInterval(() => {
         originNumber.value = RANDOM(100, 999)
 
         itemRefs.forEach((dom, index) => {
           if (!dom) return
           const transY = -100 * numberList.value[index]
-          ;(
-            dom.children[0] as HTMLElement
-          ).style.transform = `translateY(${transY}px)`
+            ; (
+              dom.children[0] as HTMLElement
+            ).style.transform = `translateY(${transY}px)`
         })
       }, 2000)
     })
-    onUnmounted(() => {
+    onDeactivated(() => {
       clearInterval(timer)
     })
     const numberList = computed<number[]>(() => {

@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, reactive, ref } from "vue";
+import { computed, defineComponent, onActivated, onDeactivated, reactive, ref } from "vue";
 
 export default defineComponent({
   name: "TableScroll2",
@@ -43,10 +43,16 @@ export default defineComponent({
     );
     let isMouseenter = ref();
 
+    const stop = ref();
     // 挂载后生成数据
-    onMounted(() => {
+    onActivated(() => {
+      stop.value = false
       startScroll();
     });
+    onDeactivated(() => {
+      stop.value = true
+    });
+
     const startScroll = () => {
       const originCount = originList.data.length; //  原数组长度
       const trHeight = 30; //  每行高度
@@ -59,6 +65,7 @@ export default defineComponent({
         tbRef.value.scrollTop = scrollTop >= resetTop ? 0 : scrollTop + 1;
         if (isMouseenter.value) return;
 
+        if (stop.value) return
         window.requestAnimationFrame(step);
       }
 

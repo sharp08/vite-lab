@@ -11,14 +11,12 @@
         width: 2 * item.r + 'px',
         height: 2 * item.r + 'px',
       }"
-    >
-      {{ item.i }}
-    </div>
+    >{{ item.i }}</div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref, onUnmounted } from "vue";
+import { defineComponent, onActivated, onDeactivated, reactive, ref, } from "vue";
 
 type point = [number, number];
 interface IUnit {
@@ -102,14 +100,14 @@ export default defineComponent({
       }
     }
 
-    onMounted(() => {
+    onActivated(() => {
       refresh();
       clearInterval(timer);
       timer = setInterval(() => {
         refresh();
       }, 2000);
     });
-    onUnmounted(() => {
+    onDeactivated(() => {
       clearInterval(timer);
     });
     return {

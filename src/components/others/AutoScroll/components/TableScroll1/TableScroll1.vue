@@ -32,9 +32,12 @@ import {
   computed,
   defineComponent,
   onMounted,
+  onActivated,
+  onDeactivated,
   reactive,
   ref,
   watch,
+  render,
 } from "vue";
 
 export default defineComponent({
@@ -45,14 +48,6 @@ export default defineComponent({
     const curScrollTime = ref(0); //  滚动的次数
     const tbRef = ref(); //  dom
     const renderList = computed(() => [...originList.data]); //  渲染列表
-
-    // 监听渲染列表
-    watch(renderList, (newVal, oldVal) => {
-      if (newVal.length !== oldVal.length) {
-        curScrollTime.value = 0; //  只有当渲染列表数发生变化时，重置滚动
-        handleCalcCurScrollTime(newVal);
-      }
-    });
 
     // 监听滚动次数
     watch(curScrollTime, (newVal) => {
@@ -68,6 +63,14 @@ export default defineComponent({
     // 挂载后生成数据
     onMounted(() => {
       originList.data = [...Array(10).keys()];
+    });
+
+    onActivated(() => {
+      curScrollTime.value = 0; //  只有当渲染列表数发生变化时，重置滚动
+      handleCalcCurScrollTime(renderList.value);
+    });
+    onDeactivated(() => {
+      clearInterval(timer);
     });
 
     let timer;

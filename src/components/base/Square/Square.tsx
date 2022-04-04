@@ -9,8 +9,8 @@ export default defineComponent({
     const slots = {
       default: ({ Component, route }) => (
         <Transition
-          enter-active-class="animate__animated animate__lightSpeedInLeft"
-          leave-active-class="animate__animated animate__lightSpeedOutRight"
+          enter-active-class="animate__animated animate__fadeIn"
+          leave-active-class="animate__animated animate__fadeOut"
           mode="out-in"
           duration={1000}
           name="custom-classes-transition"
