@@ -44,7 +44,7 @@ NoticeCore._newInstance = (cb: CbType) => {
     }
   });
 
-  const vNode = h(Wrapper); //  转换成虚拟 dom 
+  const vNode = h(Wrapper); //  转换成虚拟 dom
   render(vNode, div); //  渲染到 div 上 render 这个方法是在 andv 的源码里看到的
 };
 
@@ -68,13 +68,16 @@ const open = (params: string | INotice, type: string) => {
     };
   }
 
-  // 第一次调用 open 时创建 instance，后续不再进入
-  if (!instance) {
-    NoticeCore._newInstance((inst: Icb) => {
-      instance = inst;
-    });
+  // 有实例
+  if (instance) {
+    instance.add(standardParams);
+    return;
   }
-  instance.add(standardParams);
+  // 没有实例，先创建实例
+  NoticeCore._newInstance((inst: Icb) => {
+    instance = inst;
+    instance.add(standardParams);
+  });
 };
 
 let Notice: NoticeType = {

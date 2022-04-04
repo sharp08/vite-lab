@@ -35,16 +35,13 @@ export default defineComponent({
       window.requestAnimationFrame(run);
     };
 
-    // 拖拽
-    useDrag(clockRef);
-
     onMounted(() => {
       window.requestAnimationFrame(run);
     });
     onBeforeUnmount(() => {});
 
     return () => (
-      <div class={ms["clock"]} ref={clockRef}>
+      <div class={ms["clock"]} v-draggable>
         {/* 指针 */}
         <div ref={hRef} class={ms["hand"] + " " + ms["h"]}></div>
         <div ref={mRef} class={ms["hand"] + " " + ms["m"]}></div>

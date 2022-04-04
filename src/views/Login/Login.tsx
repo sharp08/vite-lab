@@ -6,7 +6,6 @@ import { useRouter } from "vue-router";
 import { apis } from "@/utils/apis";
 
 // 组件级的
-import { useVideo } from "./hooks";
 import ms from "./Login.module.less";
 
 export default defineComponent({
@@ -17,18 +16,14 @@ export default defineComponent({
 
     const keyEvent = (e: KeyboardEvent) => {
       if (e.key === "Enter") {
-        console.log(e);
         $router.push({ name: "main" });
       }
     };
 
-    // 视频宽度较大，调整一下位置
-    // const videoRef = useVideo();
-
     // 获取毒鸡汤
     async function getSoup() {
       const { content } = await apis.getPoisonousChickenSoup();
-      text.value = content;
+      text.value = content || "纵有疾风起";
     }
 
     onMounted(() => {
@@ -38,19 +33,17 @@ export default defineComponent({
     onBeforeUnmount(() => {
       document.documentElement.removeEventListener("keyup", keyEvent);
     });
-
     return () => (
       <div class={ms["login"]} onDblclick={getSoup}>
         {/* 必须静音才能自动播放 */}
         <video
-          // ref={videoRef}
           class={ms["bg"]}
           src="/media/bg2.mp4"
           autoplay
           muted
           loop
         ></video>
-        <Card backdrop class={ms["form-container"]}>
+        <Card backdrop class={ms["form-container"]} v-draggable>
           <span style="text-align:center;font-size:26px">
             <i style="font-size:40px" class="iconfont icon-baojiaquotation2" />
             {text.value}
