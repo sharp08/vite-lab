@@ -40,7 +40,6 @@ instance.interceptors.request.use(
 // 响应拦截
 instance.interceptors.response.use(
   response => {
-    console.log(response);
     const { data, status } = response;
     if (status !== 200) return Promise.reject(data);
 

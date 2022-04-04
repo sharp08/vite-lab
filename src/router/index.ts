@@ -30,7 +30,6 @@ export const routes: IRouteRecordRaw[] = [
   {
     path: "/",
     name: "main",
-    redirect: demoRoutes[0].name as string,
     meta: {
       title: "main",
       needLogin: true
@@ -40,6 +39,7 @@ export const routes: IRouteRecordRaw[] = [
       {
         path: "",
         name: "square",
+        redirect: { name: "login" },
         meta: {
           title: "square",
           needLogin: true
