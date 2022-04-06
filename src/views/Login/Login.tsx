@@ -22,12 +22,22 @@ export default defineComponent({
 
     // 获取毒鸡汤
     async function getSoup() {
-      const { content } = await apis.getPoisonousChickenSoup();
-      text.value = content || "纵有疾风起";
+      // todo 拆解成通用方法
+      const { content = "纵有疾风起" } = await apis.getPoisonousChickenSoup();
+
+      let i = 0;
+      let timer = setInterval(() => {
+        i++;
+        if (i <= content.length) {
+          text.value = content.slice(0, i);
+        } else {
+          clearInterval(timer);
+        }
+      }, 100);
     }
 
     onMounted(() => {
-      getSoup();
+      // getSoup();
       document.documentElement.addEventListener("keyup", keyEvent, false);
     });
     onBeforeUnmount(() => {
