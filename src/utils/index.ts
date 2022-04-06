@@ -1,4 +1,5 @@
 import type { App, Plugin } from "vue";
+import { qs } from "./qs";
 
 const withInstall = <T>(component: T, alias?: string) => {
   const comp = component as any;
@@ -35,4 +36,4 @@ const RANDOM = (
   return r;
 };
 
-export { withInstall, isEmpty, RANDOM };
+export { withInstall, isEmpty, RANDOM, qs };

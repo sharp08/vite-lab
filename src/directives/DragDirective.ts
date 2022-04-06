@@ -9,8 +9,8 @@ class Drag {
   // 每个用到指令的 dom 挂载时调用
   mounted(el: HTMLElement, binding: DirectiveBinding) {
     const pos = getComputedStyle(el).position;
-    console.r("当前元素", el);
     if (!["absolute", "fixed"].includes(pos)) {
+      console.r("当前元素", el);
       Notice.error("需要拖拽的元素必须是绝对定位或固定定位");
       return;
     }
