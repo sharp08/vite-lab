@@ -7,7 +7,7 @@ import {
   ref
 } from "vue";
 
-import { Block, Ball } from "./Class";
+import { Paper, Block, Ball } from "./Class";
 
 import ms from "./BlockDestroyer.module.less";
 
@@ -17,28 +17,23 @@ export default defineComponent({
     const cvsRef = ref<HTMLCanvasElement>();
     let ctx: CanvasRenderingContext2D;
 
-    let canvasOpts = {
-      width: 550,
-      height: 400
-    };
-
+    const paper = new Paper({ w: 550, h: 400 });
     function init() {
       ctx = cvsRef.value.getContext("2d");
-
       // 上边
-      new Block(ctx, { x: 30, y: 0, w: 100, h: 30 });
-      new Block(ctx, { x: 130, y: 0, w: 100, h: 30, c: "orange" });
-      new Block(ctx, { x: 230, y: 0, w: 100, h: 30 });
+      new Block(ctx, paper, { x: 30, y: 0, w: 100, h: 30 });
+      new Block(ctx, paper, { x: 130, y: 0, w: 100, h: 30, c: "orange" });
+      new Block(ctx, paper, { x: 230, y: 0, w: 100, h: 30 });
       // 左边
-      new Block(ctx, { x: 0, y: 0, w: 30, h: 100, c: "orange" });
-      new Block(ctx, { x: 0, y: 100, w: 30, h: 100 });
+      new Block(ctx, paper, { x: 0, y: 0, w: 30, h: 100, c: "orange" });
+      new Block(ctx, paper, { x: 0, y: 100, w: 30, h: 100 });
       // 下边
-      new Block(ctx, { x: 30, y: 170, w: 100, h: 30, c: "orange" });
-      new Block(ctx, { x: 130, y: 170, w: 100, h: 30 });
-      new Block(ctx, { x: 230, y: 170, w: 100, h: 30, c: "orange" });
+      new Block(ctx, paper, { x: 30, y: 170, w: 100, h: 30, c: "orange" });
+      new Block(ctx, paper, { x: 130, y: 170, w: 100, h: 30 });
+      new Block(ctx, paper, { x: 230, y: 170, w: 100, h: 30, c: "orange" });
       // 右边
-      new Block(ctx, { x: 330, y: 100, w: 30, h: 100 });
-      new Block(ctx, { x: 330, y: 0, w: 30, h: 100, c: "orange" });
+      new Block(ctx, paper, { x: 330, y: 100, w: 30, h: 100 });
+      new Block(ctx, paper, { x: 330, y: 0, w: 30, h: 100, c: "orange" });
       loop();
     }
 
@@ -88,8 +83,8 @@ export default defineComponent({
       <div class={ms.container}>
         <canvas
           ref={cvsRef}
-          width={canvasOpts.width}
-          height={canvasOpts.height}
+          width={paper.options.w}
+          height={paper.options.h}
           class={ms.canvas}
         >
           BlockDestroyer

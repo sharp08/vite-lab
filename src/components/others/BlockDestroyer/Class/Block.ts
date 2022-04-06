@@ -1,3 +1,6 @@
+import { Paper } from "./Paper";
+
+type PaperType = InstanceType<typeof Paper>;
 interface IOptions {
   x: number;
   y: number;
@@ -7,21 +10,30 @@ interface IOptions {
 }
 class Block {
   ctx: CanvasRenderingContext2D;
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-  c: string;
-  constructor(ctx: CanvasRenderingContext2D, options: IOptions) {
+  paper: PaperType;
+  options: IOptions;
+  
+  constructor(
+    ctx: CanvasRenderingContext2D,
+    paper: PaperType,
+    options: IOptions
+  ) {
     const { x, y, w, h, c = "green" } = options;
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-    this.c = c;
+    this.options = {
+      x,
+      y,
+      w,
+      h,
+      c
+    };
     this.ctx = ctx;
+    this.paper = paper;
     this.ctx.fillStyle = c;
     this.ctx.fillRect(x, y, w, h);
+
+    // 存入 paper
+    this.paper.addBlock(this);
   }
 }
+
 export { Block };
