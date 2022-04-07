@@ -5,8 +5,10 @@ import { setupStore } from "@/store";
 import { router, setupRouter } from "@/router";
 import { setupRouterGuard } from "@/router/guard";
 import { setupGlobalComponent } from "@/components";
-
 import App from "./App";
+
+// 登录页背景
+import './welcome.js'
 
 import "animate.css";
 
