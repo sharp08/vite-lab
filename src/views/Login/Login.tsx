@@ -37,7 +37,7 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      // getSoup();
+      getSoup();
       document.documentElement.addEventListener("keyup", keyEvent, false);
     });
     onBeforeUnmount(() => {
@@ -45,14 +45,6 @@ export default defineComponent({
     });
     return () => (
       <div class={ms["login"]} onDblclick={getSoup}>
-        {/* 必须静音才能自动播放 */}
-        <video
-          class={ms["bg"]}
-          src="/media/bg2.mp4"
-          autoplay
-          muted
-          loop
-        ></video>
         <Card backdrop class={ms["form-container"]} v-draggable>
           <span style="text-align:center;font-size:26px">
             <i style="font-size:40px" class="iconfont icon-baojiaquotation2" />

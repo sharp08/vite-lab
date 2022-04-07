@@ -1,3 +1,6 @@
+// 登录页背景逻辑
+import "./style/welcome.css"
+
 class Stage {
   constructor() {
     this.renderParam = {
