@@ -32,6 +32,18 @@ export default defineConfig({
     port: 3333
   },
   build: {
-    cssCodeSplit: false // 禁用 css 拆分
+    cssCodeSplit: false, // 禁用 css 拆分
+    // 多页面配置
+    rollupOptions: {
+      input: {
+        default: path.resolve(__dirname, "index.html"),
+        welcome: path.resolve(__dirname, "welcome.html")
+      },
+      output: {
+        chunkFileNames: "[name]/js/[name]-[hash].js",
+        entryFileNames: "[name]/js/[name]-[hash].js",
+        assetFileNames: "[name]/[ext]/[name]-[hash].[ext]"
+      }
+    }
   }
 });
