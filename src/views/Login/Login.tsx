@@ -17,6 +17,7 @@ export default defineComponent({
     const keyEvent = (e: KeyboardEvent) => {
       if (e.key === "Enter") {
         $router.push({ name: "main" });
+        switchCanvas("none");
       }
     };
 
@@ -36,8 +37,16 @@ export default defineComponent({
       }, 100);
     }
 
+    // 切换登录背景可视状态
+    function switchCanvas(str: string) {
+      (
+        document.querySelector("#webgl-canvas") as HTMLCanvasElement
+      ).style.display = str;
+    }
+
     onMounted(() => {
       getSoup();
+      switchCanvas("");
       document.documentElement.addEventListener("keyup", keyEvent, false);
     });
     onBeforeUnmount(() => {
