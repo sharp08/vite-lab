@@ -1,6 +1,15 @@
 
 <template>
   <div class="container">
+    <BasePanel />
+    <BaseSwitch />
+    <BaseSwitch :checked="true" />
+    <BaseCheckbox />
+    <BaseCheckbox :checked="true" />
+    <BaseRadio />
+    <BaseRadio :checked="true" />
+    <BaseButton />
+    <BaseButton type="primary" />
     <div class="components">
       <div class="switch">
         <div class="switch__1">
@@ -139,8 +148,15 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
+import BasePanel from '@/components/base/BasePanel'
+import BaseSwitch from '@/components/base/BaseSwitch'
+import BaseCheckbox from '@/components/base/BaseCheckbox'
+import BaseRadio from '@/components/base/BaseRadio'
+import BaseButton from '@/components/base/BaseButton'
+
 export default defineComponent({
   name: "Design",
+  components: { BasePanel, BaseSwitch, BaseCheckbox, BaseRadio, BaseButton },
   setup() {
     return {};
   },

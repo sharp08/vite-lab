@@ -1,0 +1,41 @@
+.checkbox {
+    width: 60px;
+    display: flex;
+    justify-content: center;
+
+    label {
+        box-shadow: @shadow;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        width: 28px;
+        height: 28px;
+
+
+        &:hover .icons {
+            color: @primary;
+        }
+
+        .icons {
+            font-size: 18px;
+            font-weight: 700;
+            color: @greyDark;
+            transition: .3s ease;
+        }
+    }
+
+    input:checked {
+
+        // ~ : 连接两个选择器，匹配非第一个选择器且非第一个选择器后代
+        &~label {
+            box-shadow: @inner-shadow;
+
+            .icons {
+                color: @primary;
+            }
+        }
+    }
+}
