@@ -11,7 +11,6 @@ export default defineComponent({
     }
   },
   setup(props, ctx) {
-    console.log(ms["btn__" + props.type])
     return () => (
       <div class={ms["btn__" + props.type]}>
         <p>Button</p>

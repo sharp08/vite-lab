@@ -16,7 +16,7 @@ export default defineComponent({
 
     return () => (
       <div class={ms.main}>
-        <Clock />
+        {/* <Clock /> */}
         <Nav></Nav>
         <div class={ms.main__right}>
           <ToolBar />
