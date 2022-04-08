@@ -2,12 +2,14 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import path from "path";
+// import viteCompression from 'vite-plugin-compression'; //  gzip 压缩
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-    vueJsx({}) //  用于支持 jsx tsx
+    vueJsx({}), //  用于支持 jsx tsx
+    // viteCompression() //  开启 gzip，会额外生成一部分 .gz 文件，但需要 nginx 开启什么配置才能真正应用 gzip 文件
   ],
   resolve: {
     alias: {
@@ -39,11 +41,11 @@ export default defineConfig({
         default: path.resolve(__dirname, "index.html"),
         welcome: path.resolve(__dirname, "welcome.html")
       },
-      output: {
-        chunkFileNames: "[name]/js/[name]-[hash].js",
-        entryFileNames: "[name]/js/[name]-[hash].js",
-        assetFileNames: "[name]/[ext]/[name]-[hash].[ext]"
-      }
+      // output: {
+      //   chunkFileNames: "[name]/js/[name]-[hash].js",
+      //   entryFileNames: "[name]/js/[name]-[hash].js",
+      //   assetFileNames: "[name]/[ext]/[name]-[hash].[ext]"
+      // }
     }
   }
 });
