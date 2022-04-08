@@ -1,4 +1,4 @@
-import { defineComponent, KeepAlive, onBeforeUnmount } from "vue";
+import { defineComponent, KeepAlive } from "vue";
 import { RouterView } from "vue-router";
 
 import Nav from "@/components/base/Nav";
@@ -10,17 +10,6 @@ import ms from "./Main.module.less";
 export default defineComponent({
   name: "Main",
   setup(props, ctx) {
-    // 切换登录背景可视状态
-    function switchCanvas(str: string) {
-      (
-        document.querySelector("#webgl-canvas") as HTMLCanvasElement
-      ).style.display = str;
-    }
-    // switchCanvas("none");
-    // onBeforeUnmount(() => {
-    //   switchCanvas("");
-    // });
-
     // 创建 live2D
     createLive2D();
 

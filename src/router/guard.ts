@@ -3,10 +3,9 @@ import { isEmpty } from "@/utils";
 
 export const setupRouterGuard = (router: Router) => {
   router.beforeEach((to, from) => {
-    const form = sessionStorage.getItem("loginInfo");
+    const form = sessionStorage.getItem("login");
     if (to.meta.needLogin && isEmpty(form)) {
-      // return { name: "login" };
-      return true;
+      return { name: "login" };
     } else {
       return true;
     }

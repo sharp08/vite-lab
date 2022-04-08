@@ -15,8 +15,10 @@ export default defineComponent({
     const $router = useRouter();
     const text = ref<string>();
 
+    sessionStorage.setItem("login", "");
     const keyEvent = (e: KeyboardEvent) => {
       if (e.key === "Enter") {
+        sessionStorage.setItem("login", "true");
         $router.push({ name: "main" });
       }
     };
