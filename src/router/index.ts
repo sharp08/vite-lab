@@ -28,6 +28,15 @@ export const routes: IRouteRecordRaw[] = [
     component: () => import("../views/Login")
   },
   {
+    path: "/RouteGallery",
+    name: "RouteGallery",
+    meta: {
+      title: "RouteGallery",
+      needLogin: true
+    },
+    component: () => import("../views/RouteGallery")
+  },
+  {
     path: "/",
     name: "main",
     meta: {

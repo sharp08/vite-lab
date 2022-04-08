@@ -10,6 +10,9 @@ import App from "./App";
 // 通用样式
 import "@/style/general.less";
 
+// 鼠标彗星
+import "@/assets/js/comet";
+
 // 动画样式
 import "animate.css";
 
