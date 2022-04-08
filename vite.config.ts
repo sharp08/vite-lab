@@ -22,7 +22,7 @@ export default defineConfig({
       less: {
         modifyVars: {
           hack: `true; @import (reference) "${path.resolve(
-            "src/style/global.less"
+            "src/style/globalVars.less"
           )}";`
         },
         javascriptEnabled: true

@@ -7,9 +7,10 @@ import { setupRouterGuard } from "@/router/guard";
 import { setupGlobalComponent } from "@/components";
 import App from "./App";
 
-// 登录页背景
-import './welcome.js'
+// 通用样式
+import "@/style/general.less";
 
+// 动画样式
 import "animate.css";
 
 const launchApp = () => {
