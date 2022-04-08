@@ -1,22 +1,31 @@
-import { defineComponent, KeepAlive } from "vue";
+import { defineComponent, KeepAlive, onBeforeUnmount } from "vue";
 import { RouterView } from "vue-router";
 
 import Nav from "@/components/base/Nav";
 import ToolBar from "@/components/base/ToolBar";
-import Clock from "@/components/global/Clock";
 
 import ms from "./Main.module.less";
 
 export default defineComponent({
   name: "Main",
   setup(props, ctx) {
+    // 切换登录背景可视状态
+    function switchCanvas(str: string) {
+      (
+        document.querySelector("#webgl-canvas") as HTMLCanvasElement
+      ).style.display = str;
+    }
+    switchCanvas("none");
+    onBeforeUnmount(() => {
+      switchCanvas("");
+    });
+
     const slots = {
       default: ({ Component, route }) => <KeepAlive>{Component}</KeepAlive>
     };
 
     return () => (
       <div class={ms.main}>
-        {/* <Clock /> */}
         <Nav></Nav>
         <div class={ms.main__right}>
           <ToolBar />
