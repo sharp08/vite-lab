@@ -1,4 +1,4 @@
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 
 import ms from "./BaseSwitch.module.less";
 
@@ -9,11 +9,17 @@ export default defineComponent({
       type: Boolean
     }
   },
-  setup(props, ctx) {
+  setup(props, { emit }) {
+    function onClick(e: PointerEvent) {
+      const bool = props.checked;
+      emit("onClick", bool);
+    }
+    const renderClass = computed(() =>
+      props.checked ? ms["label"] + " " + ms["checked"] : ms["label"]
+    );
     return () => (
-      <div class={ms["switch"]}>
-        <input id="switch" type="checkbox" hidden checked={props.checked} />
-        <label for="switch" class={ms["label"]}></label>
+      <div class={ms["switch"]} onClick={onClick}>
+        <span class={renderClass.value}></span>
       </div>
     );
   }

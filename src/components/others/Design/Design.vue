@@ -1,13 +1,14 @@
 <!-- https://codepen.io/myacode/pen/PoqQQNM -->
 <template>
   <div class="container">
-    <BasePanel />
-    <BaseSwitch />
-    <BaseSwitch :checked="true" />
-    <BaseCheckbox />
-    <BaseCheckbox :checked="true" />
-    <BaseRadio />
-    <BaseRadio :checked="true" />
+    <BasePanel class="panel">panel</BasePanel>
+    <BaseSwitch @onClick="handleSwitchClick" :checked="switchChecked" />
+    <BaseCheckbox @onClick="handleCheckboxClick" :checked="checkbox" />
+    <BaseRadio
+      v-for="item in radioList"
+      @Click="handleRadioClick(item)"
+      :checked="item === radioValue"
+    />
     <BaseButton />
     <BaseButton type="primary" />
     <BaseWave />
@@ -18,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, reactive } from "vue";
 
 import BasePanel from '@/components/base/BasePanel'
 import BaseSwitch from '@/components/base/BaseSwitch'
@@ -38,7 +39,33 @@ export default defineComponent({
     BaseTabBar, BaseInput, BaseSlider
   },
   setup() {
-    return {};
+    let switchChecked = ref(false)
+    const handleSwitchClick = (v: boolean) => {
+      switchChecked.value = !v
+    }
+
+
+    let checkbox = ref(false)
+    const handleCheckboxClick = (v: boolean) => {
+      checkbox.value = !v
+    }
+
+    let radioList = reactive<number[]>([1, 2, 3])
+    let radioValue = ref<number>()
+
+    const handleRadioClick = (item: number) => {
+      radioValue.value = item
+    }
+
+    return {
+      handleSwitchClick,
+      switchChecked,
+      handleCheckboxClick,
+      checkbox,
+      radioList,
+      radioValue,
+      handleRadioClick
+    };
   },
 });
 </script>

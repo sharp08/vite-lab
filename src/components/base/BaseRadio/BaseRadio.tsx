@@ -1,4 +1,4 @@
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 
 import ms from "./BaseRadio.module.less";
 
@@ -10,17 +10,12 @@ export default defineComponent({
     }
   },
   setup(props, ctx) {
+    const renderClass = computed(() =>
+      props.checked ? ms["label"] + " " + ms["checked"] : ms["label"]
+    );
     return () => (
       <div class={ms["radio"]}>
-        <input
-          id="radio"
-          type="radio"
-          checked={props.checked}
-          name="radio"
-          value="1"
-          hidden
-        />
-        <label for="radio"></label>
+        <span class={renderClass.value}></span>
       </div>
     );
   }
