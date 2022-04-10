@@ -1,6 +1,25 @@
-var canvas = document.createElement("canvas");
+interface IPoint {
+  sx: number;
+  sy: number;
+  vx: number;
+  vy: number;
+  life: number;
+  color: string;
+  size: number;
+}
+
+interface IClick {
+  sx: number;
+  sy: number;
+  color: string;
+  life: number;
+  vx: number;
+  vy: number;
+}
+
+let canvas = document.createElement("canvas");
 canvas.setAttribute("id", "comet");
-var ctx = canvas.getContext("2d");
+let ctx = canvas.getContext("2d");
 window.document.body.appendChild(canvas);
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -8,23 +27,24 @@ canvas.setAttribute(
   "style",
   "position:fixed;left:0;top:0;pointer-events:none;"
 );
-var clicks = [];
-var points = []; //定义粒子数组
-var live = 50; //存活50个周期
-var colors = [
-  //备选粒子颜色数组
+let clicks: IClick[] = [];
+let points: IPoint[] = []; //定义粒子数组
+const live = 50; //存活50个周期
+//备选粒子颜色数组
+const colors = [
   "236, 204, 104",
   "255, 71, 87",
   "112, 161, 255",
   "123, 237, 159"
 ];
-window.addEventListener("mousemove", function (evt) {
-  //监听鼠标移动事件
+
+//监听鼠标移动事件
+function mousemove(e: MouseEvent) {
   for (var i = 0; i < 15; i++) {
     //添加15个粒子
     points.push({
-      sx: evt.x, //鼠标当前坐标作为粒子坐标
-      sy: evt.y,
+      sx: e.x, //鼠标当前坐标作为粒子坐标
+      sy: e.y,
       vx: 0.5 - Math.random(), //x轴及y轴的移动向量，取值范围为-0.5 ~ 0.5
       vy: 0.5 - Math.random(),
       life: live, //存活周期
@@ -32,22 +52,27 @@ window.addEventListener("mousemove", function (evt) {
       size: Math.random() * 5 //随机粒子尺寸，取值范围为0~5
     });
   }
-});
-window.addEventListener("click", function (evt) {
-  //监听点击事件
+}
+
+//监听点击事件
+function click(e: PointerEvent) {
   for (var i = 0; i < 100; i++) {
     clicks.push({
-      sx: evt.x,
-      sy: evt.y,
+      sx: e.x,
+      sy: e.y,
       color: colors[parseInt(Math.random() * colors.length + "")],
       life: live,
       vx: 0.5 - Math.random(), //x轴及y轴的移动向量，取值范围为-0.5 ~ 0.5
       vy: 0.5 - Math.random()
     });
   }
-});
+}
+
+window.addEventListener("mousemove", mousemove);
+window.addEventListener("click", click);
+
+//绘制粒子
 function drawpoints() {
-  //绘制粒子
   ctx.clearRect(0, 0, canvas.width, canvas.height); //清屏
   for (var i = 0; i < points.length; i++) {
     //遍历粒子
