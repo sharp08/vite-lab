@@ -11,3 +11,4 @@ interface INotice {
 declare let AAA: string;
 
 declare let Card: any;
+declare let L2Dwidget: any;

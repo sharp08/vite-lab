@@ -11,7 +11,7 @@ import App from "./App";
 import "@/style/general.less";
 
 // 鼠标彗星
-// import "@/assets/js/comet";
+import "@/assets/js/comet";
 
 // 动画样式
 import "animate.css";

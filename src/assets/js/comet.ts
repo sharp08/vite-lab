@@ -1,4 +1,5 @@
 var canvas = document.createElement("canvas");
+canvas.setAttribute("id", "comet");
 var ctx = canvas.getContext("2d");
 window.document.body.appendChild(canvas);
 canvas.width = window.innerWidth;
