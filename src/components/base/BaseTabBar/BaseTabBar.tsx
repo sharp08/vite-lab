@@ -4,6 +4,14 @@ import ms from "./BaseTabBar.module.less";
 
 export default defineComponent({
   name: "BaseTabBar",
+  props: {
+    list: Array,
+    default: () => [
+      { label: "Tab 1", value: "1" },
+      { label: "Tab 2", value: "2" },
+      { label: "Tab 3", value: "3" }
+    ]
+  },
   setup(props, ctx) {
     return () => (
       <div class={ms["segmented-control"]}>
