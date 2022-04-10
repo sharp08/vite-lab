@@ -1,4 +1,4 @@
-import { defineComponent, KeepAlive } from "vue";
+import { defineComponent, KeepAlive, onMounted } from "vue";
 import { RouterView } from "vue-router";
 
 import Nav from "@/components/base/Nav";
@@ -10,8 +10,12 @@ import ms from "./Main.module.less";
 export default defineComponent({
   name: "Main",
   setup(props, ctx) {
-    // 创建 live2D
-    createLive2D();
+    onMounted(() => {
+      setTimeout(() => {
+        // 创建 live2D
+        createLive2D();
+      }, 10000);
+    });
 
     const slots = {
       default: ({ Component, route }) => <KeepAlive>{Component}</KeepAlive>
