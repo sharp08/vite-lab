@@ -10,12 +10,12 @@ import ms from "./Main.module.less";
 export default defineComponent({
   name: "Main",
   setup(props, ctx) {
-    onMounted(() => {
-      setTimeout(() => {
-        // 创建 live2D
-        createLive2D();
-      }, 10000);
-    });
+    // onMounted(() => {
+    //   setTimeout(() => {
+    //     // 创建 live2D
+    //     createLive2D();
+    //   }, 10000);
+    // });
 
     const slots = {
       default: ({ Component, route }) => <KeepAlive>{Component}</KeepAlive>
