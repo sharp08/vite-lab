@@ -1,36 +1,42 @@
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 import ms from "./BaseTabBar.module.less";
+
+type Item = { label: string; value: string };
+type List = Item[];
 
 export default defineComponent({
   name: "BaseTabBar",
   props: {
-    list: Array,
-    default: () => [
-      { label: "Tab 1", value: "1" },
-      { label: "Tab 2", value: "2" },
-      { label: "Tab 3", value: "3" }
-    ]
+    value: {
+      type: String
+    },
+    list: {
+      type: Array,
+      default: () => [
+        { label: "Tab 1", value: "1" },
+        { label: "Tab 2 Tab 2", value: "2" },
+        { label: "Tab 3", value: "3" }
+      ]
+    }
   },
-  setup(props, ctx) {
+  setup(props, { emit }) {
+    const bgRef = ref();
+    function onClick(e, o) {
+      emit("onClick", o.value);
+      setTimeout(() => {
+        console.log(props.value);
+      });
+    }
     return () => (
-      <div class={ms["segmented-control"]}>
-        <input type="radio" name="radio2" value="3" id="tab-1" checked hidden />
-        <label for="tab-1" class={ms["segmented-control__1"]}>
-          <p>Tab 1</p>
-        </label>
+      <div class={ms["container"]}>
+        {(props.list as List).map(item => (
+          <span class={ms["tag"]} onClick={e => onClick(e, item)}>
+            {item.label}
+          </span>
+        ))}
 
-        <input type="radio" name="radio2" value="4" id="tab-2" hidden />
-        <label for="tab-2" class={ms["segmented-control__2"]}>
-          <p>Tab 2</p>
-        </label>
-
-        <input type="radio" name="radio2" value="5" id="tab-3" hidden />
-        <label for="tab-3" class={ms["segmented-control__3"]}>
-          <p>Tab 3</p>
-        </label>
-
-        <div class={ms["segmented-control__color"]}></div>
+        {/* <div ref={bgRef} class={ms["current"]}></div> */}
       </div>
     );
   }

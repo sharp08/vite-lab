@@ -12,7 +12,7 @@
     <BaseButton />
     <BaseButton type="primary" />
     <BaseWave />
-    <BaseTabBar />
+    <BaseTabBar @onClick="handleClick" :value="tabBar" />
     <BaseInput />
     <BaseSlider />
   </div>
@@ -21,41 +21,51 @@
 <script lang="ts">
 import { defineComponent, ref, reactive } from "vue";
 
-import BasePanel from '@/components/base/BasePanel'
-import BaseSwitch from '@/components/base/BaseSwitch'
-import BaseCheckbox from '@/components/base/BaseCheckbox'
-import BaseRadio from '@/components/base/BaseRadio'
-import BaseButton from '@/components/base/BaseButton'
-import BaseWave from '@/components/base/BaseWave'
-import BaseTabBar from '@/components/base/BaseTabBar'
-import BaseInput from '@/components/base/BaseInput'
-import BaseSlider from '@/components/base/BaseSlider'
+import BasePanel from "@/components/base/BasePanel";
+import BaseSwitch from "@/components/base/BaseSwitch";
+import BaseCheckbox from "@/components/base/BaseCheckbox";
+import BaseRadio from "@/components/base/BaseRadio";
+import BaseButton from "@/components/base/BaseButton";
+import BaseWave from "@/components/base/BaseWave";
+import BaseTabBar from "@/components/base/BaseTabBar";
+import BaseInput from "@/components/base/BaseInput";
+import BaseSlider from "@/components/base/BaseSlider";
 
 export default defineComponent({
   name: "Design",
   components: {
-    BasePanel, BaseSwitch, BaseCheckbox,
-    BaseRadio, BaseButton, BaseWave,
-    BaseTabBar, BaseInput, BaseSlider
+    BasePanel,
+    BaseSwitch,
+    BaseCheckbox,
+    BaseRadio,
+    BaseButton,
+    BaseWave,
+    BaseTabBar,
+    BaseInput,
+    BaseSlider
   },
   setup() {
-    let switchChecked = ref(false)
+    let switchChecked = ref(false);
     const handleSwitchClick = (v: boolean) => {
-      switchChecked.value = !v
-    }
+      switchChecked.value = !v;
+    };
 
-
-    let checkbox = ref(false)
+    let checkbox = ref(false);
     const handleCheckboxClick = (v: boolean) => {
-      checkbox.value = !v
-    }
+      checkbox.value = !v;
+    };
 
-    let radioList = reactive<number[]>([1, 2, 3])
-    let radioValue = ref<number>()
+    let radioList = reactive<number[]>([1, 2, 3]);
+    let radioValue = ref<number>();
 
     const handleRadioClick = (item: number) => {
-      radioValue.value = item
-    }
+      radioValue.value = item;
+    };
+
+    let tabBar = ref<string>();
+    const handleClick = (val: string) => {
+      tabBar.value = val;
+    };
 
     return {
       handleSwitchClick,
@@ -64,12 +74,14 @@ export default defineComponent({
       checkbox,
       radioList,
       radioValue,
-      handleRadioClick
+      handleRadioClick,
+      handleClick,
+      tabBar
     };
-  },
+  }
 });
 </script>
-    
+
 <style lang="less" scoped>
 @import url(./Design.less);
 </style>

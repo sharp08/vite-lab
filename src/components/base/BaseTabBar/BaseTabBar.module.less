@@ -1,7 +1,7 @@
-.segmented-control {
+.container {
     grid-column: 3 / 4;
     grid-row: 1 / 2;
-    width: 204px;
+    // width: 204px;
     height: 40px;
     box-shadow: @shadow;
     border-radius: 10px;
@@ -9,21 +9,11 @@
     align-items: center;
     position: relative;
 
-    input {
-        display: none;
-    }
-
-    >input:checked+label {
-        transition: all .5s ease;
-        color: @primary;
-    }
-
-    &__1,
-    &__2,
-    &__3 {
-        width: 68px;
+    .tag {
+        // width: 68px;
+        padding: 0 5px;
         height: 36px;
-        font-size: 14px;
+        font-size: 16px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -31,12 +21,24 @@
         color: @greyDark;
         transition: all .5s ease;
 
+        &:first-child {
+            padding-left: 10px
+        }
+        &:last-child {
+            padding-right: 10px
+        }
+
         &:hover {
             color: @primary;
         }
+
+        &.current {
+            color: red;
+        }
     }
 
-    &__color {
+
+    .current {
         position: absolute;
         height: 34px;
         width: 62px;
@@ -44,20 +46,7 @@
         border-radius: 8px;
         box-shadow: @inner-shadow;
         pointer-events: none;
+        transform: translateX(0);
+        transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     }
-}
-
-#tab-1:checked~.segmented-control__color {
-    transform: translateX(0);
-    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-#tab-2:checked~.segmented-control__color {
-    transform: translateX(68px);
-    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-#tab-3:checked~.segmented-control__color {
-    transform: translateX(136px);
-    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
