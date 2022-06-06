@@ -22,17 +22,10 @@ const files = [
   {
     name: `${DIRNAME}.vue`,
     content: `
-<template><div>${DIRNAME}</div></template>
+<template><div>{{a}}</div></template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-    
-export default defineComponent({
-  name: "${DIRNAME}",
-  setup() {
-    return {};
-  },
-});
+<script setup lang="ts">
+const a = "${DIRNAME}"
 </script>
     
 <style lang="less" scoped>
