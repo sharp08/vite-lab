@@ -1,0 +1,40 @@
+.radio {
+
+  .label {
+    box-shadow: @shadow;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+
+    &:hover {
+      &::after {
+        background: @primary;
+      }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 0px;
+      height: 0px;
+      background: @greyDark;
+      border-radius: 50%;
+      transition: 0.3s ease;
+    }
+
+    &.checked {
+      box-shadow: @inner-shadow;
+
+      &::after {
+        width: 14px;
+        height: 14px;
+        background: @primary;
+      }
+    }
+  }
+}

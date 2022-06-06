@@ -1,0 +1,50 @@
+@keyframes trans {
+    0% {
+        transform: translateY(-50px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.notice {
+    color: #fff;
+    position: fixed;
+    top: 50px;
+    left: 0%;
+
+    .notice__item {
+        transition: transform 0.5s ease, opacity 0.5s ease;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        height: 50px;
+        white-space: nowrap;
+        width: 100vw;
+        pointer-events: none; //  假设当前元素挡住了下面的按钮，通过该属性可以【穿透】该元素，点击到下面的元素
+
+        .text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 2px;
+            padding: 0 40px;
+            background-color: orange;
+
+            &--info {
+                background: @blue;
+            }
+
+            &--success {
+                background: @green;
+            }
+
+            &--error {
+                background: @red;
+            }
+        }
+
+
+    }
+}

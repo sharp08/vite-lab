@@ -1,0 +1,112 @@
+@primary: #51b7ff;
+@white: #fff;
+@greyLight-1: #e4ebf5;
+@greyLight-2: #c8d0e7;
+@greyLight-3: #bec8e4;
+@greyDark: #9baacf;
+
+@shadow: 4.8px 4.8px 9.6px @greyLight-2, -3.2px -3.2px 8px @white;
+@inner-shadow: inset 3.2px 3.2px 8px @greyLight-2, inset 3.2px 3.2px 8px @white;
+@little-inner-shadow: inset 1px 1px 1px @greyLight-2, inset -1px -1px 1px @white;
+
+.clock {
+  background: @greyLight-1;
+  top: 100px;
+  right: 100px;
+  width: 192px;
+  height: 192px;
+  border-radius: 50%;
+  box-shadow: @shadow;
+  position: absolute;
+  z-index: 1000;
+  .global_center;
+
+  .hand {
+    position: absolute;
+    bottom: 96px;
+    border-radius: 3.2px;
+    transform-origin: bottom;
+    z-index: 1;
+  }
+
+  .h {
+    width: 6.4px;
+    height: 51.9px;
+    background: @greyLight-3;
+  }
+
+  .m {
+    width: 6.4px;
+    height: 73.6px;
+    background: @greyDark;
+  }
+
+  .s {
+    width: 3.2px;
+    height: 83.2px;
+    background: @primary
+  }
+
+  .point {
+    position: absolute;
+    width: 12.8px;
+    height: 12.8px;
+    border-radius: 50%;
+    background: @primary;
+    z-index: 2;
+  }
+
+  .marker {
+    width: 184px;
+    height: 184px;
+    box-shadow: @inner-shadow;
+    border-radius: 50%;
+    position: relative;
+    .global_center;
+
+    &::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      width: 112px;
+      height: 112px;
+      box-shadow: @little-inner-shadow;
+    }
+
+    &__t,
+    &__b,
+    &__l,
+    &__r {
+      position: absolute;
+      box-shadow: @little-inner-shadow;
+    }
+
+    &__t {
+      width: 3.2px;
+      height: 9.6px;
+      left: 90.4px;
+      top: 3.2px;
+    }
+
+    &__b {
+      width: 3.2px;
+      height: 9.6px;
+      left: 90.4px;
+      top: 172.8px;
+    }
+
+    &__l {
+      width: 9.6px;
+      height: 3.2px;
+      left: 3.2px;
+      top: 90.4px;
+    }
+
+    &__r {
+      width: 9.6px;
+      height: 3.2px;
+      left: 172.8px;
+      top: 90.4px;
+    }
+  }
+}

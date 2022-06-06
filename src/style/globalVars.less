@@ -1,0 +1,78 @@
+// 全局变量
+@import "./transition.less";
+@import "./design.less";
+
+@red: #ed4014;
+@blue: #008cee;
+@skyblue: skyblue;
+@green: #19be6b;
+@orange: orange;
+@light-gray: #dcdcdc;
+
+.global_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 溢出隐藏 */
+.over_dot {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* 滚动条 */
+.scrollBar {
+
+  /*水平滚动条的样式*/
+  ::-webkit-scrollbar-thumb:horizontal {
+    width: 4px;
+    background-color: #CCCCCC;
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-track-piece {
+    /*滚动条的背景颜色*/
+    background-color: #e7e7e7;
+    /*滚动条的圆角宽度*/
+    border-radius: 0;
+  }
+
+  ::-webkit-scrollbar {
+    /*滚动条的宽度*/
+    width: 10px;
+    /*滚动条的高度*/
+    height: 8px;
+  }
+
+  /*垂直滚动条的样式*/
+  ::-webkit-scrollbar-thumb:vertical {
+    height: 50px;
+    background-color: @blue;
+    border-radius: 4px;
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+    border: 2px solid #fff;
+  }
+
+  /*滚动条的hover样式*/
+  ::-webkit-scrollbar-thumb:hover {
+    height: 50px;
+    background-color: @skyblue;
+    border-radius: 4px;
+  }
+}
+
+// 动态样式，假设设计图为1920px，上面的一个元素100px
+// 则使用时 font-size: ~`vw1920(100)`
+.injectLessFn() {
+  @functions: ~`(function() {
+      this.vw1920=size=>size * 100 / 1920 + 'vw'
+      this.vh1080=size=>size * 100 / 1080 + 'vh'
+    }
+
+  )()`;
+}
+
+.injectLessFn();

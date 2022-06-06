@@ -1,0 +1,22 @@
+.text-scroll-container {
+    background: @red;
+    width: 200px;
+    margin: 10px;
+    overflow: hidden;
+
+    .transform-wrap {
+        display: flex;
+
+        .text {
+            flex-shrink: 0;
+        }
+
+        .placeholder {
+            flex-shrink: 0;
+            width: 200px;
+            background: @green;
+            height: 100%;
+            color: @light-gray
+        }
+    }
+}

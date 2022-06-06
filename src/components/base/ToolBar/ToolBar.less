@@ -1,0 +1,60 @@
+.tool-bar {
+    height: 50px;
+    margin-bottom: 10px;
+    display: flex;
+    padding: 10px;
+    position: relative;
+    overflow: unset;
+
+    .scroll {
+        flex: 1;
+        background: #f3f3f3;
+        margin-right: 10px;
+    }
+
+    .stable {
+        width: 100px;
+        flex-shrink: 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.5s all ease;
+
+        &:hover {
+            background: #f3f3f3;
+        }
+
+        .text {
+            color: @blue;
+        }
+
+        .menu {
+            background: #fff;
+            width: 100%;
+            position: absolute;
+            top: 33px;
+
+            .menu-item {
+                height: 40px;
+                line-height: 40px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+                transition: 0.2s all ease;
+                cursor: pointer;
+                padding: 0 10px;
+                text-align: center;
+
+                &.active {
+                    background: #ebf7ff;
+                    color: @blue;
+                    font-weight: bold;
+                }
+
+                &:hover {
+                    background: #ebf7ff;
+                }
+            }
+        }
+    }
+}

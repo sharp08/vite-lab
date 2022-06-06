@@ -1,0 +1,27 @@
+.form {
+    grid-column: 3 / 4;
+    grid-row: 3 / 4;
+
+    &__input {
+        width: 204px;
+        height: 40px;
+        border: none;
+        border-radius: 10px;
+        font-size: 14px;
+        padding-left: 14px;
+        box-shadow: @inner-shadow;
+        background: none;
+        font-family: inherit;
+        color: @greyDark;
+
+        &::placeholder {
+            color: @greyLight-3;
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: @shadow;
+        }
+    }
+
+}

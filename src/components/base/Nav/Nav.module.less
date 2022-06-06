@@ -1,0 +1,49 @@
+.nav-container {
+  padding: 10px;
+  padding-right: 5px;
+  width: 300px;
+
+  .card {
+    height: 100%;
+  }
+
+  .list-item {
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+    transition: 0.2s all ease;
+    cursor: pointer;
+    padding: 0 10px;
+    width: 100%;
+    .over_dot;
+    position: relative;
+
+
+    &.active {
+      background: #ebf7ff;
+      color: @blue;
+      font-weight: bold;
+    }
+
+    &::before {  
+      transform: scaleX(0);
+      transform-origin: bottom right;
+    }
+    
+    &:hover::before {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+    
+    &::before {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      inset: 0 0 0 0;
+      background: hsl(200 100% 80%);
+      z-index: -1;
+      transition: transform .3s ease;
+    }
+  }
+}
