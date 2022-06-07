@@ -1,12 +1,15 @@
+// 平面圆
+
 import type { Ref } from "vue";
 import {
   Scene,
   PerspectiveCamera,
   WebGLRenderer,
-  BoxGeometry,
+  CylinderGeometry,
   MeshPhongMaterial,
   DirectionalLight,
-  Mesh
+  Mesh,
+  DoubleSide
 } from "three";
 
 function init(containerRef: Ref<HTMLDivElement>) {
@@ -39,41 +42,40 @@ function init(containerRef: Ref<HTMLDivElement>) {
      * 远截面
      */
     1000
-  );  
+  );
 
   // 创建渲染器
   const renderer = new WebGLRenderer();
-  // const renderer = new WebGLRenderer({canvas:canvasDom});  //  这里可以主动传入 canvas 容器
   // 内容渲染的尺寸，即 canvas 的尺寸
   renderer.setSize(renderSize.width, renderSize.height);
   containerRef.value.appendChild(renderer.domElement); //  将创建的 canvas 放到容器中，如果主动传入，则不需要这一步
 
-  // 创建一个盒子几何体，几何中心位于坐标轴原点
-  const geometry = new BoxGeometry(2, 2, 2);
+  {
+    // 创建灯光（平行光）
+    const light = new DirectionalLight("lightcoral", 2 /* 光源强度 */);
+    light.position.set(0, 3, 3);
+    scene.add(light);
+  }
+
+  // 创建几何体，点击进去看具体参数
+  const geometry = new CylinderGeometry(5, 8, 20, 8);
   // 创建材质（MeshBasicMaterial 不受光源影响，需要使用以下这个）
-  const material = new MeshPhongMaterial({ color: "orange" });
+  const material = new MeshPhongMaterial({ color: "red", side: DoubleSide });
   // 创建网格，根据几何体和材质生成图形
-  const cube = new Mesh(geometry, material);
+  const mesh = new Mesh(geometry, material);
   // 将图形放入场景
-  scene.add(cube);
-  
-  // 创建灯光（平行光）
-  const light = new DirectionalLight("lightcoral", 2  /* 光源强度 */);
-  light.position.set(-1, 1, 3);
-  scene.add(light);
+  scene.add(mesh);
 
   /**
    * 调整相机位置，相机默认平行于z轴且朝向z轴负方向
    */
-  camera.position.z = 5; //  沿着z轴正方向移5个单位，此时只能看到正方形一个面
-  // camera.position.y = 1.5; //  沿着y轴正方向移1.5个单位，相机视线依旧平行于z轴，此时可以看到正方形两个面，正面和顶面
-  // camera.position.set(0, 1.5, 5); //  一次性设置多个位置
-  // camera.lookAt( 0, 0, 0 );  //  设置相机朝向
+  camera.position.z = 30; //  沿着z轴正方向移5个单位，此时只能看到正方形一个面
 
+  // 总感觉不是沿着中心旋转？
   function animate() {
-    cube.rotation.x += 0.01; //  沿着 x 轴旋转
-    cube.rotation.y += 0.01;
-    // cube.rotation.z += 0.01;
+    mesh.rotation.x += 0.01; //  沿着 x 轴旋转
+    mesh.rotation.y += 0.01;
+    mesh.rotation.z += 0.01;
 
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
