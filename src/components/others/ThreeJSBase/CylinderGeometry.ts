@@ -1,5 +1,4 @@
-// 平面圆
-
+// 圆柱
 import type { Ref } from "vue";
 import {
   Scene,

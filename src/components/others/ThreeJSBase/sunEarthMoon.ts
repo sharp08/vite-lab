@@ -1,9 +1,6 @@
-// 文本
+// 太阳地球月亮
 import type { Ref } from "vue";
 import * as THREE from "three";
-import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
-import type { Font } from "three/examples/jsm/loaders/FontLoader.js";
-import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
 function init(containerRef: Ref<HTMLDivElement>) {
   const renderSize = {
@@ -47,7 +44,7 @@ function init(containerRef: Ref<HTMLDivElement>) {
   const radius = 1;
   const widthSegments = 6;
   const heightSegments = 6;
-  const sphereGeometry = new THREE.SphereGeometry(
+  const sphereGeometry = new THREE.SphereGeometry(  //  球
     radius,
     widthSegments,
     heightSegments
