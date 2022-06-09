@@ -13,6 +13,7 @@ import useCylinderGeometry from "./CylinderGeometry";
 import useTextGeometry from "./TextGeometry";
 import useSunEarthMoon from "./sunEarthMoon";
 import useTank from "./tank";
+import useOrbitControls from "./OrbitControls";
 
 const containerRef = ref<HTMLDivElement>(); // 用于存放 canvas 的容器
 const { init: initBaseCube } = useBaseCube(); //  基础版
@@ -22,6 +23,7 @@ const { init: initCylinderGeometry } = useCylinderGeometry(); //  圆柱体
 const { init: initTextGeometry } = useTextGeometry(); //  文本
 const { init: initSunEarthMoon } = useSunEarthMoon(); //  太阳月亮地球
 const { init: initTank } = useTank(); //  坦克
+const { init: initOrbitControls } = useOrbitControls(); //  旋转相机
 
 onMounted(() => {
   initBaseCube(containerRef);
@@ -31,6 +33,7 @@ onMounted(() => {
   initTextGeometry(containerRef);
   initSunEarthMoon(containerRef);
   initTank(containerRef);
+  initOrbitControls(containerRef);
 
   // 双击画面切换全屏
   Object.values(containerRef.value.querySelectorAll("canvas")).forEach(dom => {
