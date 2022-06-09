@@ -10,11 +10,7 @@ export default defineComponent({
       default: "default"
     }
   },
-  setup(props, ctx) {
-    return () => (
-      <div class={ms["btn__" + props.type]}>
-        <p>Button</p>
-      </div>
-    );
+  setup(props, { slots }) {
+    return () => <div class={ms["btn__" + props.type]}>{slots.default()}</div>;
   }
 });
