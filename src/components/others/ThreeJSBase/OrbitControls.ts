@@ -77,7 +77,10 @@ function init(containerRef: Ref<HTMLDivElement>) {
       sphereWidthDivisions,
       sphereHeightDivisions
     );
-    const sphereMat = new THREE.MeshPhongMaterial({ color: "#CA8" });
+    const sphereMat = new THREE.MeshPhongMaterial({
+      color: "#CA8",
+      wireframe: true //  线框
+    });
     const mesh = new THREE.Mesh(sphereGeo, sphereMat);
     mesh.position.set(-sphereRadius - 1, sphereRadius + 2, 0);
     scene.add(mesh);
@@ -99,15 +102,25 @@ function init(containerRef: Ref<HTMLDivElement>) {
     }
   }
 
+  // 环境光
   {
     const color = 0xffffff;
     const intensity = 1;
-    const light = new THREE.AmbientLight(color, intensity); //  环境光，可以理解为四面八方都有光
+    const light = new THREE.AmbientLight(color, intensity); //  环境光，可以理解为四面八方都有光，此案例中可以确保地面底部可以被看到，可以注释查看区别
     scene.add(light);
     // 右上角的属性操作面板
     // const gui = new GUI();
     // gui.addColor(new ColorGUIHelper(light, "color"), "value").name("color");
     // gui.add(light, "intensity", 0, 2, 0.01);
+  }
+
+  // 平行光，默认照向 (0,0,0)
+  {
+    const color = 0xffffff;
+    const intensity = 1;
+    const pointLight = new THREE.DirectionalLight(color, intensity);
+    pointLight.position.set(10, 5, 0);
+    scene.add(pointLight);
   }
 
   function resizeRendererToDisplaySize(renderer: THREE.WebGLRenderer) {
