@@ -1,6 +1,5 @@
 <template>
-  <div class="container" ref="containerRef"></div>
-  <canvas id="c"></canvas>
+  <div class="threejs-container" ref="containerRef"></div>
 </template>
 
 <script setup lang="ts">

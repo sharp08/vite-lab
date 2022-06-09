@@ -37,7 +37,7 @@ function init(containerRef: Ref<HTMLDivElement>) {
   {
     const loader = new THREE.TextureLoader(); //  加载纹理用
     const texture = loader.load(
-      "https://threejs.org/manual/examples/resources/images/checker.png"
+      "https://threejs.org/manual/examples/resources/images/checker.png" //  2×2 的小方块
     );
     texture.wrapS = THREE.RepeatWrapping; //   纹理重复，注释了看效果
     texture.wrapT = THREE.RepeatWrapping; //   纹理重复，注释了看效果
@@ -99,16 +99,15 @@ function init(containerRef: Ref<HTMLDivElement>) {
     }
   }
 
-  // 右上角的属性操作面板
   {
     const color = 0xffffff;
     const intensity = 1;
     const light = new THREE.AmbientLight(color, intensity); //  环境光，可以理解为四面八方都有光
     scene.add(light);
-
-    const gui = new GUI();
-    gui.addColor(new ColorGUIHelper(light, "color"), "value").name("color");
-    gui.add(light, "intensity", 0, 2, 0.01);
+    // 右上角的属性操作面板
+    // const gui = new GUI();
+    // gui.addColor(new ColorGUIHelper(light, "color"), "value").name("color");
+    // gui.add(light, "intensity", 0, 2, 0.01);
   }
 
   function resizeRendererToDisplaySize(renderer: THREE.WebGLRenderer) {
