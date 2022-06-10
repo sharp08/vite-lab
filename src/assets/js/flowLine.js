@@ -1,6 +1,7 @@
 // 登录页背景逻辑
 import "@/style/welcome.css";
 import { onMounted } from "vue";
+import * as THREE from "three";
 
 class Stage {
   constructor() {
@@ -190,8 +191,6 @@ void main()	{
 }
 `;
 document.body.appendChild(script1);
-
-
 
 const script2 = document.createElement("script");
 script2.id = "js-fragment-shader";
